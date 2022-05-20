@@ -33,3 +33,13 @@ functions:
             parameters:
               paths:
                 code: true
+  getCalendarEvents:
+    handler: handler.getCalendarEvents
+    events:
+      - http:
+          path: api/get-events/{access_token}
+          method: get
+          request:
+            parameters:
+              paths:
+                access_token: true
