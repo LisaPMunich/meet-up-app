@@ -25,17 +25,17 @@ As a user, I would like to be able to add the app shortcut to my home screen so 
 
 ### FEATURE 1: USER SHOULD BE ABLE TO FILTER EVENTS BY CITY
 
-#### Scenario 1:
+#### Scenario 1: WHEN USER HASN'T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.
 Given the user hasn’t searched for any city, <br>
 When they open the app, <br>
 Then they should see a list of all upcoming events.
 
-#### Scenario 2: 
+#### Scenario 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY.
 Given the main page is open, <br>
 When the user starts typing in the city textbox, <br>
 Then they should see a list of cities (suggestions) that match what they’ve typed.
 
-#### Scenario 3:
+#### Scenario 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
 Given the user was typing “Munich” in the city textbox <br>
 and the list of suggested cities is being displayed, <br>
 When the user selects a city from the list, <br>
