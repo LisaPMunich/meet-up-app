@@ -1,4 +1,4 @@
-# Meet Up App
+±±±*# Meet Up App
 
 ## Description
 
@@ -26,70 +26,70 @@ As a user, I would like to be able to add the app shortcut to my home screen so 
 ### FEATURE 1: USER SHOULD BE ABLE TO FILTER EVENTS BY CITY
 
 #### Scenario 1:
-Given the user hasn’t searched for any city,
-When they open the app,
+Given the user hasn’t searched for any city, <br>
+When they open the app, <br>
 Then they should see a list of all upcoming events.
 
 #### Scenario 2: 
-Given the main page is open,
-When the user starts typing in the city textbox,
+Given the main page is open, <br>
+When the user starts typing in the city textbox, <br>
 Then they should see a list of cities (suggestions) that match what they’ve typed.
 
 #### Scenario 3:
-Given the user was typing “Munich” in the city textbox
-and the list of suggested cities is being displayed,
-When the user selects a city from the list,
-Then their city should be changed to that city
+Given the user was typing “Munich” in the city textbox <br>
+and the list of suggested cities is being displayed, <br>
+When the user selects a city from the list, <br>
+Then their city should be changed to that city <br>
 and the user should receive a list of upcoming events in that city.
 
 ### FEATURE 2: USER SHOULD SEE MORE/LESS DETAILS ON AN EVENT
 
 #### Scenario 1: 
-Given a city or number of events has been selected ,
-When a list of events is being displayed,
+Given a city or number of events has been selected,  <br>
+When a list of events is being displayed, <br>
 Then the single event details are collapsed by default.
 
 #### Scenario 2:
-Given a list of events is being displayed,
-When the user clicks on a "show details" button of one event,
+Given a list of events is being displayed, <br>
+When the user clicks on a "show details" button of one event, <br>
 Then more details of the selected event are displayed.
 
 #### Scenario 3:
-Given details of one selected event have been displayed,
-When the user clicks on a "hide details" button in the event details view,
+Given details of one selected event have been displayed, <br>
+When the user clicks on a "hide details" button in the event details view, <br>
 Then the detailed view collapses to hide the details again.
 
 
 ### FEATURE 3: USER SHOULD BE ABLE TO SPECIFY NUMBER OF EVENTS PER CITY
 
 #### Scenario 1: 
-Given the user has selected a city,
-When they have not specified a number of events to be displayed,
+Given the user has selected a city, <br>
+When they have not specified a number of events to be displayed, <br>
 Then the search box underneath the city textbox will contain the default value of 32.
 
 #### Scenario 2:
-Given the user has selected a city,
-When they click into the search box underneath,
+Given the user has selected a city, <br>
+When they click into the search box underneath, <br>
 Then they can type in a number to specify the number of events to show.
 
 ### FEATURE 4: USER SHOULD BE ABLE TO USE THE APP WHEN OFFLINE
 
 #### Scenario 1:
-Given the user has viewed content in the app while online,
-When they are offline and the data has been cached,
+Given the user has viewed content in the app while online, <br>
+When they are offline and the data has been cached, <br>
 They can revisit this content.
 
 #### Scenario 2:
-Given the user has viewed content in the app while online,
-When they are offline and change the settings for city or time range, 
+Given the user has viewed content in the app while online, <br>
+When they are offline and change the settings for city or time range,  <br>
 They will be shown error messages.
 
 
 ### FEATURE 5: USER SHOULD BE ABLE TO SEE VISUALIZED DATA ON THE EVENTS
 
 #### Scenario 1: 
-Given a list of events is being displayed,
-When the user clicks on a "show charts" button,
+Given a list of events is being displayed, <br>
+When the user clicks on a "show charts" button, <br>
 Then they will be able to see a chart visualizing either the number of events by city (bar graph) or the topics of events in all cities (cake chart).
 
 ## Technical Requirements (according to Project Brief)
