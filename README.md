@@ -44,17 +44,17 @@ and the user should receive a list of upcoming events in that city.
 
 ### FEATURE 2: USER SHOULD SEE MORE/LESS DETAILS ON AN EVENT
 
-#### Scenario 1: 
+#### Scenario 1: AN EVENT ELEMENT IS COLLAPSED BY DEFAULT
 Given a city or number of events has been selected,  <br>
 When a list of events is being displayed, <br>
 Then the single event details are collapsed by default.
 
-#### Scenario 2:
+#### Scenario 2: USER CAN EXPAND AN EVENT TO SEE ITS DETAILS
 Given a list of events is being displayed, <br>
 When the user clicks on a "show details" button of one event, <br>
 Then more details of the selected event are displayed.
 
-#### Scenario 3:
+#### Scenario 3: USER CAN COLLAPSE AN EVENT TO HIDE ITS DETAILS
 Given details of one selected event have been displayed, <br>
 When the user clicks on a "hide details" button in the event details view, <br>
 Then the detailed view collapses to hide the details again.
@@ -62,24 +62,24 @@ Then the detailed view collapses to hide the details again.
 
 ### FEATURE 3: USER SHOULD BE ABLE TO SPECIFY NUMBER OF EVENTS PER CITY
 
-#### Scenario 1: 
+#### Scenario 1: WHEN USER HASN'T SPECIFIED A NUMBER, 32 IS THE DEFAULT NUMBER
 Given the user has selected a city, <br>
 When they have not specified a number of events to be displayed, <br>
 Then the search box underneath the city textbox will contain the default value of 32.
 
-#### Scenario 2:
+#### Scenario 2: USER CAN CHANGE THE NUMBER OF EVENTS THEY WANT TO SEE
 Given the user has selected a city, <br>
 When they click into the search box underneath, <br>
 Then they can type in a number to specify the number of events to show.
 
 ### FEATURE 4: USER SHOULD BE ABLE TO USE THE APP WHEN OFFLINE
 
-#### Scenario 1:
+#### Scenario 1: SHOW CACHED DATA WHEN THERE'S NO INTERNET CONNECTION
 Given the user has viewed content in the app while online, <br>
 When they are offline and the data has been cached, <br>
 They can revisit this content.
 
-#### Scenario 2:
+#### Scenario 2: SHOW ERROR WHEN USER CHANGES THE SETTINGS (CITY, TIME RANGE)
 Given the user has viewed content in the app while online, <br>
 When they are offline and change the settings for city or time range,  <br>
 They will be shown error messages.
@@ -87,7 +87,7 @@ They will be shown error messages.
 
 ### FEATURE 5: USER SHOULD BE ABLE TO SEE VISUALIZED DATA ON THE EVENTS
 
-#### Scenario 1: 
+#### Scenario 1: SHOW A CHART WITH THE NUMBER OF UPCOMING EVENTS IN EACH CITY
 Given a list of events is being displayed, <br>
 When the user clicks on a "show charts" button, <br>
 Then they will be able to see a chart visualizing either the number of events by city (bar graph) or the topics of events in all cities (cake chart).
