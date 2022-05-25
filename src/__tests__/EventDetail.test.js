@@ -1,12 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Event from '../components/Event';
+import EventDetail from '../components/EventDetail';
 import {mockData, mockEvent01} from '../mock-data';
+
 
 describe('<Event /> component', () => {
     let eventWrapper;
     beforeAll(() => {
-        eventWrapper = shallow(<Event event={mockEvent01}/>)
+        eventWrapper = shallow(<EventDetail event={mockEvent01}/>)
     })
     test('render collapsed single event details view', () => {
         expect(eventWrapper.find('.event')).toHaveLength(1);

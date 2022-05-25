@@ -6,7 +6,7 @@ class ToggleDetailsButton extends React.Component {
             <button
                 className="button"
                 onClick={this.props.onClick}
-            >show details
+            >{this.props.children}
             </button>
         );
     }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ToggleDetailsButton from './ToggleDetailsButton';
 
 
-class Event extends Component {
+class EventDetail extends Component {
 
     state = {
         htmlLink: '',
@@ -15,7 +15,6 @@ class Event extends Component {
             showDetails: !this.state.showDetails,
         });
     }
-
 
     render() {
         const {event} = this.props;
@@ -51,4 +50,4 @@ class Event extends Component {
     }
 }
 
-export default Event;
+export default EventDetail;

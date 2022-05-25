@@ -1,43 +1,45 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
+import PropTypes from "prop-types";
 
-class CitySearch extends Component{
+class CitySearch extends Component {
     state = {
         query: '',
-        suggestions: []
+        filteredLocations: []
     }
 
     handleInputChanged = (event) => {
         const value = event.target.value;
-        const suggestions = this.props.locations.filter((location) => {
+        const filteredLocations = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
         this.setState({
             query: value,
-            suggestions,
+            filteredLocations,
         });
     };
 
-    handleItemClicked = (suggestion) => {
+    handleItemClicked = (location) => {
         this.setState({
-            query: suggestion
+            query: location
         });
+        this.props.onSelect(location)
     }
 
     render() {
         return(
-            <div className="CitySearch">
+            <div className="city-search">
                 <input
                     type="text"
                     className="city"
                     value={this.state.query}
                     onChange={this.handleInputChanged}
                 />
-                <ul className="suggestions">
-                    {this.state.suggestions.map((suggestion) => (
+                <ul className="filtered-locations">
+                    {this.state.filteredLocations.map((location) => (
                         <li
-                            key={suggestion}
-                            onClick={() => this.handleItemClicked(suggestion)}
-                        >{suggestion}</li>
+                            key={location}
+                            onClick={() => this.handleItemClicked(location)}
+                        >{location}</li>
                     ))}
                     <li key='all'>
                         <b>See all cities</b>
@@ -47,6 +49,11 @@ class CitySearch extends Component{
         )
     }
 }
+
+CitySearch.propTypes = {
+    locations: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+};
 
 export default CitySearch;
 
