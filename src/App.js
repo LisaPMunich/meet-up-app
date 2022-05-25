@@ -13,25 +13,25 @@ class App extends Component {
     }
 
     render() {
-        let filteredEvents = [...mockData];
-        let locations = mockData.map(item => item.location);
-
-        // Filter by city, if city filter field is not empty
-        const cityFilter = 'Berlin';
-        filteredEvents = mockData.filter(item => item.location === cityFilter);
-
-        // Filter to only show the first X elements, if numberFilter is set
-        const numberFilter = 5;
-        filteredEvents = filteredEvents.slice(0, numberFilter - 1);
+        // let filteredEvents = [...mockData];
+        // let locations = mockData.map(item => item.location);
+        //
+        // // Filter by city, if city filter field is not empty
+        // const cityFilter = 'Berlin';
+        // filteredEvents = mockData.filter(item => item.location === cityFilter);
+        //
+        // // Filter to only show the first X elements, if numberFilter is set
+        // const numberFilter = 5;
+        // filteredEvents = filteredEvents.slice(0, numberFilter - 1);
 
         return (
             <div className="App">
                 <CitySearch
-                    locations={locations}
-                    onSelect={(location) => {this.setState({cityFilter: location})}}
+                    // locations={locations}
+                    // onSelect={(location) => {this.setState({cityFilter: location})}}
                 />
                 <NumberOfEvents
-                    onChange={(number) => {this.setState({numberFilter: number})}}
+                    // onChange={(number) => {this.setState({numberFilter: number})}}
                 />
                 <EventList events={filteredEvents}/>
             </div>
