@@ -1,5 +1,5 @@
-import React, {Component, useState} from 'react';
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class CitySearch extends Component {
     state = {
@@ -17,6 +17,7 @@ class CitySearch extends Component {
             filteredLocations,
         });
     };
+
 
     handleItemClicked = (location) => {
         this.setState({
