@@ -6,6 +6,7 @@ import App from '../App';
 import EventList from '../components/EventList';
 import CitySearch from '../components/CitySearch';
 import NumberOfEvents from '../components/NumberOfEvents';
+import EventDetail from "../components/EventDetail";
 
 describe('<App/> component', () => {
     let AppWrapper;
@@ -84,6 +85,35 @@ describe('<App /> integration', () => {
     });
 });
 
+describe('<App/> integration',  () => {
+    it('should allow that App passes "eventCount" state as a prop to NumberOfEvents',  () => {
+        const AppWrapper = mount(<App />);
+        const AppEventCountState = AppWrapper.state('eventCount');
+        expect(AppEventCountState).not.toEqual(undefined);
+        expect(AppWrapper.find(NumberOfEvents).props().eventCount).toEqual(AppEventCountState);
+        AppWrapper.unmount();
+    });
+
+    it ('should trigger NumberOfEvents with onChange', () => {
+        const AppWrapper = mount(<App />);
+        const eventObject = {target: {value: '30'}};
+        const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
+        NumberOfEventsComponent.find('.event-number').simulate('change', eventObject);
+        expect(AppWrapper.state('eventCount')).toBe(30)
+    });
+
+    it('should number of displayed list events should match eventCount',  async () => {
+        const AppWrapper = mount(<App/>);
+        await AppWrapper.setState({
+            events: mockData,
+        });
+
+        expect(AppWrapper.find(EventDetail)).toHaveLength(mockData.length);
+
+        await AppWrapper.setState({ eventCount: 1});
+        expect(AppWrapper.find(EventDetail)).toHaveLength(1);
+    });
+});
 
 
 
