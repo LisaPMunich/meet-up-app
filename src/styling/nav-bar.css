@@ -17,11 +17,13 @@ nav {
     height: 90px;
     padding: 30px 25px;
     border-bottom: 1px solid #f16775;
+    box-shadow: 0 2px 4px 0 rgba(241, 103, 117, 1);
 }
 
 .nav--title {
     color: #fee36e;
     font-weight: 600;
+    font-size: 26px;
 }
 
 .nav--icon {
