@@ -1,4 +1,4 @@
-±±±*# Meet Up App
+# Meet Up App
 
 ## Description
 
@@ -7,8 +7,8 @@ Applying the TDD approach this React App combines the concepts of serverless arc
 
 ## User stories
 
-As a user I should be able to filter events by city
-So that I can see the list of events that take place in that city.
+**As a user I should be able to filter events by city
+So that I can see the list of events that take place in that city.**
 
 **As a user, I would like to be able to expand (and then again collapse) details on events so that I can get more information on an event.**
 

@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    height: 100vh;
+    background-color: #282D35;
+    color: #FFFFFF;
+}
+
+.event-list{
+    list-style-type: none;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px;
+    background: #FFFFFF;
+    color: #282D35;
+}

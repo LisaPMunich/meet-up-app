@@ -46,13 +46,5 @@ const mockEvent02 = {
 
 export const mockData = [
     mockEvent01,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
-    mockEvent02,
+    mockEvent02
 ]

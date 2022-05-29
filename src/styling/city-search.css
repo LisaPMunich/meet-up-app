@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+.city-search{
+    position: relative;
+}
+
+.suggestions{
+    list-style-type: none;
+    padding: 10px;
+    font-size: 13px;
+    color: #282D35;
+    background-color: white;
+    border: 1px solid #282D35;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: absolute;
+    margin-top: 0;
+}
+
+.suggestions:focus{
+    cursor:pointer;
+}
+
+.city{
+    margin-bottom: 0;
+}
+
+
+
