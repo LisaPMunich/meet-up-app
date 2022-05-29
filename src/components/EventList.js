@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import EventDetail from './EventDetail';
+import '../styling/event-list.css'
 
 class EventList extends Component {
     render() {
@@ -8,7 +9,8 @@ class EventList extends Component {
             <ul className="EventList">
                 {events.map(event =>
                     <li
-                        key={event.id}>
+                        key={event.id}
+                    className="event-list">
                         <EventDetail
                             event={event}
                         />

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
+import '../styling/number-of-events.css';
 
 class NumberOfEvents extends Component{
     state = {
@@ -17,8 +17,10 @@ class NumberOfEvents extends Component{
     render() {
         return(
             <div className="event-number-wrapper">
+                <label htmlFor="event-number" className="label">Select Number of Events</label>
                 <input
                     type="number"
+                    id="event-number"
                     className="event-number"
                     name="number"
                     value={this.state.number}
@@ -31,8 +33,5 @@ class NumberOfEvents extends Component{
 
 }
 
-NumberOfEvents.propTypes = {
-    onChange: PropTypes.func.isRequired,
-}
 
 export default NumberOfEvents;

@@ -1,48 +1,64 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import '../styling/city-search.css';
 
 class CitySearch extends Component {
     state = {
         query: '',
-        filteredLocations: []
+        suggestions: [],
+        showSuggestions: undefined
     }
+
+    componentDidMount() {
+        this.setState({
+            suggestions: [...this.props.locations]
+        })
+    }
+
 
     handleInputChanged = (event) => {
         const value = event.target.value;
-        const filteredLocations = this.props.locations.filter((location) => {
+        const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
         this.setState({
             query: value,
-            filteredLocations,
+            suggestions,
         });
     };
 
 
-    handleItemClicked = (location) => {
+    handleItemClicked = (suggestion) => {
         this.setState({
-            query: location
+            query: suggestion,
+            showSuggestions: false
         });
-        this.props.onSelect(location)
+        this.props.updateEvents(suggestion)
     }
 
     render() {
         return(
             <div className="city-search">
+                <label htmlFor="city" className="label">Search for a City</label>
                 <input
                     type="text"
+                    id="city"
                     className="city"
                     value={this.state.query}
                     onChange={this.handleInputChanged}
+                    onFocus={() => {this.setState({showSuggestions: true})}}
+                    onfocusout={() => {this.setState({showSuggestions: false})}}
                 />
-                <ul className="filtered-locations">
-                    {this.state.filteredLocations.map((location) => (
+                <ul className="suggestions" style={this.state.showSuggestions ? {} : {display: 'none'}}>
+                    {this.state.suggestions.map((location) => (
                         <li
+                            className="city-search--list-item"
                             key={location}
                             onClick={() => this.handleItemClicked(location)}
                         >{location}</li>
                     ))}
-                    <li key='all'>
+                    <li key='all'
+                        onClick={() => this.handleItemClicked("all") }>
                         <b>See all cities</b>
                     </li>
                 </ul>
@@ -53,7 +69,7 @@ class CitySearch extends Component {
 
 CitySearch.propTypes = {
     locations: PropTypes.array.isRequired,
-    onSelect: PropTypes.func.isRequired,
+    updateEvents: PropTypes.func.isRequired,
 };
 
 export default CitySearch;
