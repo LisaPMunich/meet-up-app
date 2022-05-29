@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from '../images/icons8-events-58.png';
+import '../styling/nav-bar.css'
 
 export default function NavBar() {
     return (

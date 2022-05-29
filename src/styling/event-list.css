@@ -10,11 +10,15 @@ body {
     color: #FFFFFF;
 }
 
+.event-list-wrapper{
+    padding-inline-start: 0;
+}
+
 .event-list{
     list-style-type: none;
     border: 1px solid grey;
     border-radius: 5px;
-    padding: 15px;
+    padding: 20px;
     margin: 15px;
     background: #FFFFFF;
     color: #282D35;

@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    height: 100vh;
+    background-color: #373E98;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #373E98;
+    height: 90px;
+    padding: 30px 25px;
+    border-bottom: 1px solid #f16775;
+}
+
+.nav--title {
+    color: #fee36e;
+    font-weight: 600;
+}
+
+.nav--icon {
+    height: 30px;
+    margin-right: 20px;
+}

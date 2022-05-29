@@ -24,8 +24,16 @@ class EventDetail extends Component {
             : "Show Details";
         return (
             <div className="event">
-                <div className="event-description">
-                    <h2 className="event-title">{event.summary}</h2>
+                <div className="event-title-wrapper">
+                    <h2 className="event-title">{event.summary}
+                    </h2>
+                    <ToggleDetailsButton
+                        onClick={this.handleClick}
+                        className="button">
+                        {buttonText}
+                    </ToggleDetailsButton>
+                </div>
+                <div className="event-description-wrapper">
                     <p className="event-time">
                         <span className="event-dateTime">{event.start.dateTime}</span>
                         <span className="event-timeZone">({event.start.timeZone})</span>
@@ -41,13 +49,6 @@ class EventDetail extends Component {
                         </p>
                      )
                     }
-                </div>
-                <div className="button-wrapper">
-                    <ToggleDetailsButton
-                        onClick={this.handleClick}
-                        className="button">
-                        {buttonText}
-                    </ToggleDetailsButton>
                 </div>
             </div>
         );
