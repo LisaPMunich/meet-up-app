@@ -5,8 +5,7 @@ import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import NavBar from './components/NavBar';
 import {extractLocations, getEvents} from './components/api';
-import {mockData} from "./mock-data";
-
+import './styling/nprogress.css';
 
 class App extends Component {
     state = {

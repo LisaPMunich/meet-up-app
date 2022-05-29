@@ -27,23 +27,20 @@ export const getEvents = async() => {
     const removeQuery = () => {
         let newurl;
         if (window.history.pushState && window.location.pathname) {
-            newurl = window.location.protocol +
-                "//" +
-                window.location.host +
-                window.location.pathname;
+            newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
             window.history.pushState("", "", newurl);
         } else {
-            newurl = window.location.protocol + "//" + window.location.host;
+            newurl = `${window.location.protocol}//${window.location.host}`;
             window.history.pushState("", "", newurl);
         }
     };
 
     if (token) {
         removeQuery();
-        const url = 'https://gz63cch2tg.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
+        const url = `https://gz63cch2tg.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
         const result = await axios.get(url);
         if (result.data) {
-            var locations = extractLocations(result.data.events);
+            let locations = extractLocations(result.data.events);
             localStorage.setItem("lastEvents", JSON.stringify(result.data));
             localStorage.setItem("locations", JSON.stringify(locations));
         }
@@ -56,7 +53,7 @@ const getToken = async (code) => {
     try {
         const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch( 'https://gz63cch2tg.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
+        const response = await fetch( `https://gz63cch2tg.execute-api.eu-central-1.amazonaws.com/dev/api/token/${encodeCode}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
