@@ -4,12 +4,18 @@
 
 .city-search{
     position: relative;
+    font-size: 16px;
+}
+
+.label{
+    font-size: 14px;
+    margin-left: 5px;
+    color: #FFFFFF;
 }
 
 .suggestions{
     list-style-type: none;
     padding: 10px;
-    font-size: 13px;
     color: #282D35;
     background-color: white;
     border: 1px solid #282D35;
