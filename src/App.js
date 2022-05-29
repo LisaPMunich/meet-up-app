@@ -9,32 +9,43 @@ import './styling/nprogress.css';
 
 class App extends Component {
     state = {
-        events:[],
-        locations:[],
+        events: [],
+        locations: [],
+        eventCount: 32,
     }
 
-    componentDidMount(){
+    componentDidMount() {
         getEvents().then((events) => {
-            this.setState({events, locations: extractLocations(events)});
-        });
-    }
-
-    componentWillUnmount(){
-        this.mounted = false
-    }
-
-    updateEvents = (location) => {
-        getEvents().then((events) => {
-            const locationEvents = (location === 'all') ? events :
-                events.filter((event) =>
-                event.location === location);
             this.setState({
-                events: locationEvents
+                events,
+                locations: extractLocations(events)
             });
         });
     }
 
+    componentWillUnmount() {
+        this.mounted = false
+    }
+
+    updateEvents = (location, eventCount) => {
+        getEvents().then((events) => {
+            const locationEvents = (location === 'all') ? events :
+                events.filter((event) =>
+                    event.location === location);
+            this.setState({
+                events: locationEvents,
+            });
+        });
+    }
+
+    updateCount = (eventCount) => {
+        this.setState({
+            eventCount: Number(eventCount),
+        })
+    }
+
     render() {
+        const limitedEvents = this.state.events.slice(0, this.state.eventCount);
 
         return (
             <div className="App">
@@ -48,11 +59,13 @@ class App extends Component {
                         />
                         <NumberOfEvents
                             className="number-of-events"
+                            onChange={this.updateCount}
+                            eventCount={this.state.eventCount}
                         />
                     </div>
                     <EventList
                         className="event-list"
-                        events={this.state.events}
+                        events={limitedEvents}
                     />
                 </main>
             </div>
@@ -61,3 +74,15 @@ class App extends Component {
 }
 
 export default App;
+
+
+// let filteredEvents = [...mockData];
+// let locations = mockData.map(item => item.location);
+//
+// // Filter by city, if city filter field is not empty
+// const cityFilter = 'Berlin';
+// filteredEvents = mockData.filter(item => item.location === cityFilter);
+//
+// // Filter to only show the first X elements, if numberFilter is set
+// const numberFilter = 5;
+// filteredEvents = filteredEvents.slice(0, numberFilter - 1);
