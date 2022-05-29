@@ -1,5 +1,7 @@
 # Meet Up App
 
+<img src="https://user-images.githubusercontent.com/99111208/170891142-39111b16-c955-46fb-b4a3-9a8b9f9c9246.png" alt="Screenshot Meet-up-app">
+
 ## Description
 
 The Meet Up App allows users to view upcoming events for a specific city by using the Google Calendar API.
@@ -18,7 +20,7 @@ So that I can see the list of events that take place in that city.**
 
 **As a user, I would like to see a chart when selecting a specific city, so that I know how many future events there are for the city selected.**
 
-As a user, I would like to be able to add the app shortcut to my home screen so that I can open the app faster.
+**As a user, I would like to be able to add the app shortcut to my home screen so that I can open the app faster.**
 
 
 ## Test Scenarios (using Gherkin syntax)
