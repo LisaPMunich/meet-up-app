@@ -17,7 +17,7 @@ describe('<CitySearch/> component', () => {
     });
 
     it('should render a list of suggestions', () => {
-        expect(CitySearchWrapper.find('.filtered-locations')).toHaveLength(1);
+        expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1);
     });
 
     it('should render text input correctly', () => {
@@ -41,10 +41,10 @@ describe('<CitySearch/> component', () => {
         const suggestions = CitySearchWrapper.state('suggestions');
 
         // There is an additional li with "See all cities" added to the end
-        expect(CitySearchWrapper.find('.filtered-locations li')).toHaveLength(suggestions.length + 1);
+        expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
 
         for (let i = 0; i < suggestions.length; i += 1) {
-            expect(CitySearchWrapper.find('.filtered-locations li').at(i).text()).toBe(suggestions[i]);
+            expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
         }
     })
 
