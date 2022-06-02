@@ -10,11 +10,11 @@ body {
     color: #FFFFFF;
 }
 
-.event-list-wrapper{
+.event-item-wrapper{
     padding-inline-start: 0;
 }
 
-.event-list{
+.event-item{
     list-style-type: none;
     border: 1px solid grey;
     border-radius: 5px;

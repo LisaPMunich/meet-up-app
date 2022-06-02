@@ -20,7 +20,7 @@ defineFeature(feature, test => {
 
 
         when('a list of events is being displayed', () => {
-            expect(AppWrapper.find('.event-list-wrapper')).toBeTruthy();
+            expect(AppWrapper.find('.event-item-wrapper')).toBeTruthy();
         });
 
         then('the single event details are collapsed by default', () => {
