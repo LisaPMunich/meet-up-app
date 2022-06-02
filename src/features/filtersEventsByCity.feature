@@ -1,7 +1,7 @@
 Feature: Filters events by city
 
   Scenario: When user hasn't searched for a city, show upcoming events from all cities.
-    Given the user hasn’t searched for any city
+    Given the user hasn't searched for any city
     When they open the app
     Then they should see a list of all upcoming events.
 
@@ -14,5 +14,5 @@ Feature: Filters events by city
     Given the user was typing “Berlin” in the city textbox
     And the list of suggested cities is being displayed
     When the user selects a city (e.g. "Berlin, Germany") from the list
-    Then their city should be changed to that city (i.e. "Berlin, Germany)
+    Then their city should be changed to that city (i.e. Berlin, Germany)
     And the user should receive a list of upcoming events in that city.

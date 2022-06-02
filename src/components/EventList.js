@@ -21,4 +21,4 @@ class EventList extends Component {
     }
 }
 
-export default EventList;
+export default EventList

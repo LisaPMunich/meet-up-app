@@ -11,7 +11,7 @@ const feature = loadFeature('./src/features/filtersEventsByCity.feature');
 
 defineFeature(feature, test => {
     test('When user hasn\'t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
-        given('the user hasn’t searched for any city', () => {
+        given('the user hasn\'t searched for any city', () => {
 
         });
         let AppWrapper;
@@ -54,7 +54,7 @@ defineFeature(feature, test => {
             AppWrapper.find('.suggestions li').at(0).simulate('click');
         });
 
-        then('their city should be changed to that city (i.e. "Berlin, Germany)', () => {
+        then('their city should be changed to that city (i.e. Berlin, Germany)', () => {
             const CitySearchWrapper = AppWrapper.find(CitySearch);
             expect(CitySearchWrapper.state('query')).toBe('Berlin, Germany');
         });
