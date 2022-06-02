@@ -24,7 +24,7 @@ defineFeature(feature, test => {
         });
 
         then('the single event details are collapsed by default', () => {
-            expect(AppWrapper.find('.event-link')).toHaveLength(0);
+            expect(AppWrapper.find('.event__details')).toHaveLength(0);
         });
     });
     test('User can expand an event to see its details', ({ given, when, then }) => {
@@ -38,7 +38,7 @@ defineFeature(feature, test => {
         });
 
         then('more details of the selected event are displayed', () => {
-            expect(AppWrapper.find('.event-link')).toHaveLength(1);
+            expect(AppWrapper.find('.event__details')).toHaveLength(1);
         });
     });
     test('User can collapse an event to hide its details', ({ given, when, then }) => {
@@ -46,7 +46,7 @@ defineFeature(feature, test => {
             AppWrapper = await mount(<App/>)
             AppWrapper.update();
             AppWrapper.find('.button').at(0).simulate('click');
-            expect(AppWrapper.find('.event-link')).toHaveLength(1);
+            expect(AppWrapper.find('.event__details')).toHaveLength(1);
         });
 
         when(/^the user clicks on a "(.*)" button in the event details view$/, (arg0) => {
@@ -55,7 +55,7 @@ defineFeature(feature, test => {
 
         then('the detailed view collapses to hide the details again', () => {
             AppWrapper.update();
-            expect(AppWrapper.find('.event-link')).toHaveLength(0);
+            expect(AppWrapper.find('.event__details')).toHaveLength(0);
         });
     });
 

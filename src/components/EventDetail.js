@@ -43,10 +43,10 @@ class EventDetail extends Component {
                         <span className="event-location">| {event.location}</span>
                     </p>
                      {this.state.showDetails && (
-                        <p>About event:
+                        <div className="event__details">About event:
                             <a href={event.htmlLink} className="event-link">{event.htmlLink} </a>
                             <p className="event-description">{event.description}</p>
-                        </p>
+                        </div>
                      )
                     }
                 </div>

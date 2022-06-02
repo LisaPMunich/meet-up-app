@@ -5,6 +5,7 @@ import '../styling/event-list.css'
 class EventList extends Component {
     render() {
         const {events} = this.props;
+        console.log('RENDER EventList', events.length)
         return (
             <ul className="event-list-wrapper">
                 {events.map(event =>

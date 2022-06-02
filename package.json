@@ -30,7 +30,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --watchAll",
+    "test": "react-scripts test",
+    "test:watch": "react-scripts test --watchAll",
     "coverage": "react-scripts test --env=jsdom --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -59,6 +60,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "enzyme": "^3.11.0",
     "gh-pages": "^4.0.0",
-    "jest-cucumber": "^3.0.1"
+    "jest-cucumber": "^3.0.1",
+    "puppeteer": "^14.2.1"
   }
 }

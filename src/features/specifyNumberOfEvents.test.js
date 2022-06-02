@@ -4,6 +4,7 @@ import {mount} from "enzyme";
 import App from "../App";
 import CitySearch from '../components/CitySearch';
 import NumberOfEvents from "../components/NumberOfEvents";
+import EventDetail from "../components/EventDetail";
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
@@ -38,16 +39,15 @@ defineFeature(feature, test => {
             AppWrapper.find('.event-number').simulate('click');
         });
 
-        when('they can type in a number to specify the number of events to show', () => {
+        when('they can type in a number to specify the number of events to show', async() => {
             AppWrapper.update();
-            const eventObject = {target: {value: 1}};
-            AppWrapper.find('.event-number').simulate('change', eventObject);
-
+            const eventObject = {target: {value: '1'}};
+            await AppWrapper.find('.event-number').simulate('change', eventObject);
         });
 
-        then('the event list is reduced to the specified number.', () => {
-            AppWrapper.update();
-            expect(AppWrapper.find('.event-list')).toHaveLength(1);
+        then('the event list is reduced to the specified number.',async () => {
+            await AppWrapper.update();
+            expect(AppWrapper.find(EventDetail).length).toEqual(1);
         })
     });
 });
