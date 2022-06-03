@@ -51,6 +51,7 @@ describe('Filter events by city', () => {
         await page.waitForSelector('.event-item-wrapper');
         const eventList = await page.$('.event-item-wrapper');
         expect(eventList).toBeDefined();
+        await browser.close();
     });
 
     test('User should see a list of suggestions when they search for a city', async()=> {
@@ -61,6 +62,7 @@ describe('Filter events by city', () => {
         await page.type('.city', 'Berlin, Germany', {delay: 100});
         const citySuggestions = await page.$('.city-search .suggestions');
         expect(citySuggestions).toBeDefined();
+        await browser.close();
     });
 
     test('User can select a city from the suggested list', async()=> {
