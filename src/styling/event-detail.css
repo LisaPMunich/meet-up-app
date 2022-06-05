@@ -50,6 +50,7 @@ body {
     background-color: #fee36e;
     border: 1px solid #fee36e;
     border-radius: 5px;
+    white-space: nowrap;
 }
 
 .event-description-wrapper{
@@ -59,4 +60,11 @@ body {
     -webkit-box-orient: vertical;
     white-space: normal;
     overflow: scroll;
+}
+
+@media all and (max-width: 500px) {
+
+    h2 {
+        font-size: 1.3em;
+    }
 }
