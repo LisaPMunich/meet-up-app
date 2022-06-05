@@ -35,7 +35,7 @@ class EventDetail extends Component {
                 </div>
                 <div className="event-description-wrapper">
                     <p className="event-time">
-                        <span className="event-dateTime"> {event.start.dateTime}</span>
+                        <span className="event-dateTime">{event.start.dateTime}</span>
                         <span className="event-timeZone"> ({event.start.timeZone})</span>
                     </p>
                     <p>
@@ -44,7 +44,12 @@ class EventDetail extends Component {
                     </p>
                      {this.state.showDetails && (
                         <div className="event__details">
-                            <a href={event.htmlLink} className="event-link">About event: </a>
+                            <h3 className="event__details-header">About event:</h3>
+                            <div>
+                                <a href={event.htmlLink} className="event-link">
+                                    Add it to your Google calendar
+                                </a>
+                            </div>
                             <p className="event-description">{event.description}</p>
                         </div>
                      )
