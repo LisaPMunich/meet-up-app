@@ -59,8 +59,6 @@ body {
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     white-space: normal;
-    overflow-y: scroll;
-    -ms-overflow-y: scroll;
 }
 
 @media all and (max-width: 500px) {

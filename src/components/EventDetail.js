@@ -35,16 +35,16 @@ class EventDetail extends Component {
                 </div>
                 <div className="event-description-wrapper">
                     <p className="event-time">
-                        <span className="event-dateTime">{event.start.dateTime}</span>
-                        <span className="event-timeZone">({event.start.timeZone})</span>
+                        <span className="event-dateTime"> {event.start.dateTime}</span>
+                        <span className="event-timeZone"> ({event.start.timeZone})</span>
                     </p>
                     <p>
                         <span className="event-name">@{event.summary} </span>
                         <span className="event-location">| {event.location}</span>
                     </p>
                      {this.state.showDetails && (
-                        <div className="event__details">About event:
-                            <a href={event.htmlLink} className="event-link">{event.htmlLink} </a>
+                        <div className="event__details">
+                            <a href={event.htmlLink} className="event-link">About event: </a>
                             <p className="event-description">{event.description}</p>
                         </div>
                      )
