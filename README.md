@@ -119,3 +119,10 @@ the user.
 * The app must be covered by tests with a coverage rate >= 90%.
 * The app must be monitored using an online monitoring tool.
 
+## Running the Tests
+To run the tests from the command line, install Google Chrome then run:
+```
+npm run test
+```
+
+
