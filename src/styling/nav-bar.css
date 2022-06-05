@@ -1,4 +1,12 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
 * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -10,13 +18,20 @@ body {
 }
 
 nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     background-color: #373E98;
     height: 90px;
     padding: 30px 25px;
     border-bottom: 1px solid #f16775;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(241, 103, 117, 1);
     box-shadow: 0 2px 4px 0 rgba(241, 103, 117, 1);
 }
 
