@@ -1,0 +1,14 @@
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.alert {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    top: -35px;
+    left: 5px;
+}

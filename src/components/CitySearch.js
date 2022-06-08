@@ -19,28 +19,24 @@ class CitySearch extends Component {
 
     handleInputChanged = (event) => {
         const value = event.target.value;
-        this.setState({showSuggestions:true});
+        this.setState({ showSuggestions:true });
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
+        console.log('Filter: ',value)
+        console.log('suggestions', suggestions)
         if (suggestions.length === 0){
             this.setState({
                 query: value,
-                infoText: 'Cannot find the city you are looking for. Please try another city',
+                infoText: 'Cannot find city. Please try again!',
             });
         } else {
             return this.setState({
                 query: value,
                 suggestions,
-                infoText: ''
+                infoText:''
             })
         }
-        this.setState({
-            query: suggestion,
-            suggestions: [],
-            showSuggestions: false,
-            infoText:''
-        });
     };
 
 
@@ -50,6 +46,7 @@ class CitySearch extends Component {
             showSuggestions: false
         });
         this.props.updateEvents(suggestion)
+        console.log('suggestion', suggestion)
     }
 
     render() {
@@ -64,7 +61,7 @@ class CitySearch extends Component {
                     value={this.state.query}
                     onChange={this.handleInputChanged}
                     onFocus={() => {this.setState({showSuggestions: true})}}
-                    onfocusout={() => {this.setState({showSuggestions: false})}}
+                    onBlur={() => { setTimeout(() => {this.setState({showSuggestions: false})}, 250)}}
                 />
                 <ul className="suggestions" style={this.state.showSuggestions ? {} : {display: 'none'}}>
                     {this.state.suggestions.map((location) => (

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../styling/alert.css';
 
 class Alert extends Component{
     constructor(props){
@@ -14,7 +15,7 @@ class Alert extends Component{
 
     render(){
         return(
-           <div className="Alert">
+           <div className="alert">
                <p style={this.getStyle()}>{this.props.text}</p>
            </div>
         )
@@ -24,7 +25,7 @@ class Alert extends Component{
 class InfoAlert extends Alert {
     constructor(props){
         super(props);
-        this.color = 'blue';
+        this.color = 'pink';
     }
 }
 
