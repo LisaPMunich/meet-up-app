@@ -8,7 +8,9 @@
     position: absolute;
     font-size: 14px;
     font-weight: bold;
+    font-style: italic;
     white-space: nowrap;
     top: -35px;
     left: 5px;
+    margin-top: 5px;
 }

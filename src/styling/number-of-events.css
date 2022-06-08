@@ -25,3 +25,7 @@ input {
     border-radius: 5px;
     display: block;
 }
+
+.event-number-wrapper {
+    position: relative;
+}
