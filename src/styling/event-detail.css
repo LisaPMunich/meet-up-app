@@ -59,6 +59,7 @@ a:visited{
     border: 1px solid #fee36e;
     border-radius: 5px;
     white-space: nowrap;
+    box-shadow: 2px 2px 5px hsla(300,15%,25%,0.3) inset;
 }
 
 .event-description-wrapper{
