@@ -18,10 +18,6 @@ class App extends Component {
 
     componentDidMount() {
         getEvents().then((events) => {
-            this.setState({
-                events,
-                locations: extractLocations(events)
-            });
             if (!navigator.online){
                 this.setState({
                     offlineAlertText: "You are currently offline and can only view cached content."
@@ -29,6 +25,8 @@ class App extends Component {
             } else {
                 this.setState({
                     offlineAlertText: "",
+                    events,
+                    locations: extractLocations(events)
                 })
             }
         });
