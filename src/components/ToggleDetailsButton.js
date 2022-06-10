@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styling/toggle-details-button.css';
 
 class ToggleDetailsButton extends React.Component {
     render() {
