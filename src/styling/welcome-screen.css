@@ -3,14 +3,31 @@
     width: 100%;
     height: 100%;
     top: 0;
-    background: white;
+    background: #373E98;
 }
+
+.WelcomeScreen_content{
+    border: 1px solid #494949;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+    margin: 20% 50%;
+    padding: 5%;
+}
+
+.app-name{
+    color: #fee363;
+}
+
+.WelcomeScreen_content-buttons{
+    text-align: center;
+}
+
 .login-button {
     color: #494949;
     text-transform: uppercase;
     text-decoration: none;
-    background: #ffffff;
-    border: 4px solid #494949;
+    background: #fee36e;
+    border: 4px solid #fee36e;
     display: inline-block;
     transition: all 0.4s ease 0s;
     min-width: 10rem;
@@ -31,6 +48,7 @@
 .google-btn:active {
     background: #1669f2;
 }
+
 .google-icon-wrapper {
     position: absolute;
     margin-top: 1px;
