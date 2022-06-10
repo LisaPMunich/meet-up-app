@@ -1,6 +1,5 @@
 import React from "react";
 import '../styling/welcome-screen.css';
-import Icon from '../public/meet-app-512';
 
 function WelcomeScreen(props) {
     return props.showWelcomeScreen ?
@@ -8,7 +7,7 @@ function WelcomeScreen(props) {
             <div className="WelcomeScreen">
                 <div className="WelcomeScreen_content">
                     <div className="WelcomeScreen_content-text">
-                        <h1>Welcome to the {Icon} <span className="app-name">Meet Up App</span></h1>
+                        <h1>Welcome to the <span className="app-name">Meet Up App</span></h1>
                         <h4>Log in to see upcoming events around the world for
                             full-stack developers.
                         </h4>
