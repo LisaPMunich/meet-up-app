@@ -4,11 +4,10 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 import NavBar from './components/NavBar';
-import {extractLocations, getEvents} from './components/api';
+import {extractLocations, getEvents, checkToken, getAccessToken} from './components/api';
 import './styling/nprogress.css';
 import {OfflineAlert} from "./components/Alert";
-import WelcomeScreen from './WelcomeScreen';
-import {getEvents, extractLocations, checkToken, getAccessToken} from './components/api';
+import WelcomeScreen from './components/WelcomeScreen';
 
 class App extends Component {
     state = {
@@ -76,7 +75,9 @@ class App extends Component {
                 <main>
 
                     <div className="input-wrapper">
-                        <OfflineAlert text={this.state.offlineAlertText}/>
+                        <OfflineAlert
+                            className="offline-alert"
+                            text={this.state.offlineAlertText}/>
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}
