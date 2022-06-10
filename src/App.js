@@ -7,31 +7,40 @@ import NavBar from './components/NavBar';
 import {extractLocations, getEvents} from './components/api';
 import './styling/nprogress.css';
 import {OfflineAlert} from "./components/Alert";
+import WelcomeScreen from './WelcomeScreen';
+import {getEvents, extractLocations, checkToken, getAccessToken} from './components/api';
 
 class App extends Component {
     state = {
         events: [],
         locations: [],
+        showWelcomeScreen:undefined,
         eventCount: 32,
         offlineAlertText: "",
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         if(!navigator.onLine){
             this.setState({
-            offlineAlertText: "You are currently offline and can only view cached content."
-        })} else {
+                offlineAlertText: "You are currently offline and can only view cached content."
+            })} else {
             this.setState({
                 offlineAlertText: ""
             })
         }
-
-        getEvents().then((events) => {
-                this.setState({
-                    events,
-                    locations: extractLocations(events),
-            })
-        });
+        this.mounted = true;
+        const accessToken = localStorage.getItem('access_token');
+        const isTokenValid = (await checkToken(accessToken)).error;
+        const searchParams = new URLSearchParams(window.location.search);
+        const code = searchParams.get("code");
+        this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+        if ((code || isTokenValid) && this.mounted) {
+            getEvents().then((events) => {
+                if (this.mounted) {
+                    this.setState({ events, locations: extractLocations(events) });
+                }
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -56,6 +65,9 @@ class App extends Component {
     }
 
     render() {
+        if (this.state.showWelcomeScreen === undefined)
+            return <div className="App" />
+
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
 
         return (
@@ -82,6 +94,10 @@ class App extends Component {
                         events={limitedEvents}
                     />
                 </main>
+                <WelcomeScreen
+                    showWelcomeScreen={this.state.showWelcomeScreen}
+                    getAccessToken={() => {getAccessToken()}}
+                />
             </div>
         );
     }
