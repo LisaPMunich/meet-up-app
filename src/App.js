@@ -6,12 +6,14 @@ import NumberOfEvents from './components/NumberOfEvents';
 import NavBar from './components/NavBar';
 import {extractLocations, getEvents} from './components/api';
 import './styling/nprogress.css';
+import {OfflineAlert} from "./components/Alert";
 
 class App extends Component {
     state = {
         events: [],
         locations: [],
         eventCount: 32,
+        offlineAlertText: "",
     }
 
     componentDidMount() {
@@ -20,6 +22,15 @@ class App extends Component {
                 events,
                 locations: extractLocations(events)
             });
+            if (!navigator.online){
+                this.setState({
+                    offlineAlertText: "You are currently offline and can only view cached content."
+                })
+            } else {
+                this.setState({
+                    offlineAlertText: "",
+                })
+            }
         });
     }
 
@@ -51,6 +62,7 @@ class App extends Component {
             <div className="App">
                 <NavBar/>
                 <main>
+                    <OfflineAlert/>
                     <div className="input-wrapper">
                         <CitySearch
                             locations={this.state.locations}
@@ -63,6 +75,7 @@ class App extends Component {
                             eventCount={this.state.eventCount}
                         />
                     </div>
+
                     <EventList
                         className="event-list"
                         events={limitedEvents}

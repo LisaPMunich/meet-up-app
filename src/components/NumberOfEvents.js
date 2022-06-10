@@ -10,8 +10,8 @@ class NumberOfEvents extends Component{
 
     handleInputChanged = (event) => {
         let number = event.target.value * 1;
-        if(number < 1){
-            number = 1;
+        if(number < 0){
+            number = 0;
         }
         if(number > 32) {
             this.setState({
