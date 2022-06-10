@@ -24,22 +24,7 @@
     <title>Meet Up App</title>
   </head>
   <body>
-    <script>
-        document.getElementById('status').innerHTML = navigator.onLine ? 'online' : 'offline';
-
-        let target = document.getElementById('target');
-
-        function handleStateChange() {
-            let timeBadge = new Date().toTimeString().split(' ')[0];
-            let newState = document.createElement('p');
-            let state = navigator.onLine ? 'online' : 'offline';
-            newState.innerHTML = '' + timeBadge + ' Connection state changed to ' + state + '.';
-            target.appendChild(newState);
-        }
-
-        window.addEventListener('online', handleStateChange);
-        window.addEventListener('offline', handleStateChange);
-    </script>
+    <noscript></noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.

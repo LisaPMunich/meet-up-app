@@ -17,18 +17,20 @@ class App extends Component {
     }
 
     componentDidMount() {
+        if(!navigator.onLine){
+            this.setState({
+            offlineAlertText: "You are currently offline and can only view cached content."
+        })} else {
+            this.setState({
+                offlineAlertText: ""
+            })
+        }
+
         getEvents().then((events) => {
-            if (!navigator.online){
                 this.setState({
-                    offlineAlertText: "You are currently offline and can only view cached content."
-                })
-            } else {
-                this.setState({
-                    offlineAlertText: "",
                     events,
-                    locations: extractLocations(events)
-                })
-            }
+                    locations: extractLocations(events),
+            })
         });
     }
 
@@ -60,8 +62,9 @@ class App extends Component {
             <div className="App">
                 <NavBar/>
                 <main>
-                    <OfflineAlert/>
+
                     <div className="input-wrapper">
+                        <OfflineAlert text={this.state.offlineAlertText}/>
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}
