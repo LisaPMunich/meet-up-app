@@ -56,6 +56,7 @@ class CitySearch extends Component {
                     type="text"
                     id="city"
                     className="city"
+                    autoComplete="off"
                     value={this.state.query}
                     onChange={this.handleInputChanged}
                     onFocus={() => {this.setState({showSuggestions: true})}}

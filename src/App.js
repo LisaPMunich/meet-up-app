@@ -13,30 +13,45 @@ class App extends Component {
     state = {
         events: [],
         locations: [],
-        showWelcomeScreen:undefined,
+        showWelcomeScreen: true,
         eventCount: 32,
         offlineAlertText: "",
     }
 
     async componentDidMount() {
-        if(!navigator.onLine){
-            this.setState({
-                offlineAlertText: "You are currently offline and can only view cached content."
-            })} else {
-            this.setState({
-                offlineAlertText: ""
-            })
-        }
         this.mounted = true;
-        const accessToken = localStorage.getItem('access_token');
-        const isTokenValid = (await checkToken(accessToken)).error;
-        const searchParams = new URLSearchParams(window.location.search);
-        const code = searchParams.get("code");
-        this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        if ((code || isTokenValid) && this.mounted) {
+
+        if (!(navigator.onLine && !window.location.href.startsWith('http://localhost'))) {
             getEvents().then((events) => {
                 if (this.mounted) {
-                    this.setState({ events, locations: extractLocations(events) });
+                    this.setState({
+                        events,
+                        locations: extractLocations(events),
+                        offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
+                        showWelcomeScreen: false
+                    });
+                }
+            });
+            return;
+        }
+
+        const accessToken = localStorage.getItem('access_token');
+        const isTokenValid = !(await checkToken(accessToken)).error;
+        const searchParams = new URLSearchParams(window.location.search);
+        const code = searchParams.get("code");
+
+        this.setState({
+            showWelcomeScreen: !(code || isTokenValid)
+        });
+
+        if (code || isTokenValid) {
+            getEvents().then((events) => {
+                if (this.mounted) {
+                    this.setState({
+                        events,
+                        locations: extractLocations(events),
+                        offlineAlertText: ''
+                    });
                 }
             });
         }
@@ -64,9 +79,6 @@ class App extends Component {
     }
 
     render() {
-        if (this.state.showWelcomeScreen === undefined)
-            return <div className="App" />
-
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
 
         return (
@@ -97,7 +109,9 @@ class App extends Component {
                 </main>
                 <WelcomeScreen
                     showWelcomeScreen={this.state.showWelcomeScreen}
-                    getAccessToken={() => {getAccessToken()}}
+                    getAccessToken={() => {
+                        getAccessToken()
+                    }}
                 />
             </div>
         );
@@ -105,15 +119,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// let filteredEvents = [...mockData];
-// let locations = mockData.map(item => item.location);
-//
-// // Filter by city, if city filter field is not empty
-// const cityFilter = 'Berlin';
-// filteredEvents = mockData.filter(item => item.location === cityFilter);
-//
-// // Filter to only show the first X elements, if numberFilter is set
-// const numberFilter = 5;
-// filteredEvents = filteredEvents.slice(0, numberFilter - 1);
