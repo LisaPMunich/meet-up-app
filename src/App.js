@@ -40,7 +40,7 @@ class App extends Component {
                 }
             });
         }
-        if(!navigator.online){
+        if(!navigator.onLine){
             this.setState({
                 offlineAlertText: "You are offline. The displayed event list may not be up to date."
             });
