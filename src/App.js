@@ -101,22 +101,16 @@ class App extends Component {
 
     render() {
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
-        const offlineStyle = {
-            color: "#fff",
-            backgroundColor: "#f16775",
-            top: "10px",
-            left: "10px"
-        };
 
         return (
             <div className="App">
                 <NavBar/>
-                <OfflineAlert
-                    style={offlineStyle}
-                    text={this.state.offlineAlertText}
-                />
                 <main>
                     <div className="input-wrapper">
+                        <OfflineAlert
+                            style={{color: "#f16775"}}
+                            text={this.state.offlineAlertText}
+                        />
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}
