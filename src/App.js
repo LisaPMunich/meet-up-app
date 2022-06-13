@@ -13,27 +13,13 @@ class App extends Component {
     state = {
         events: [],
         locations: [],
-        showWelcomeScreen: true,
+        showWelcomeScreen: undefined,
         eventCount: 32,
         offlineAlertText: "",
     }
 
     async componentDidMount() {
         this.mounted = true;
-
-        if (!(navigator.onLine && !window.location.href.startsWith('http://localhost'))) {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({
-                        events,
-                        locations: extractLocations(events),
-                        offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
-                        showWelcomeScreen: false
-                    });
-                }
-            });
-            return;
-        }
 
         const accessToken = localStorage.getItem('access_token');
         const isTokenValid = !(await checkToken(accessToken)).error;
@@ -50,9 +36,17 @@ class App extends Component {
                     this.setState({
                         events,
                         locations: extractLocations(events),
-                        offlineAlertText: ''
                     });
                 }
+            });
+        }
+        if(!navigator.online){
+            this.setState({
+                offlineAlertText: "You are offline. The displayed event list may not be up to date."
+            });
+        } else {
+            this.setState({
+                offlineAlertText:""
             });
         }
     }
@@ -80,6 +74,9 @@ class App extends Component {
 
     render() {
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
+
+        if (this.state.showWelcomeScreen === undefined) return <div
+            className="App" />
 
         return (
             <div className="App">
