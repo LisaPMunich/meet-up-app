@@ -20,34 +20,39 @@ class App extends Component {
 
     async componentDidMount() {
         this.mounted = true;
+        if (navigator.onLine && !window.location.href.startsWith('http://localhost')) {
 
-        const accessToken = localStorage.getItem('access_token');
-        const isTokenValid = !(await checkToken(accessToken)).error;
-        const searchParams = new URLSearchParams(window.location.search);
-        const code = searchParams.get("code");
+            const accessToken = localStorage.getItem('access_token');
+            const isTokenValid = !(await checkToken(accessToken)).error;
+            const searchParams = new URLSearchParams(window.location.search);
+            const code = searchParams.get("code");
 
-        this.setState({
-            showWelcomeScreen: !(code || isTokenValid)
-        });
-
-        if (code || isTokenValid) {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({
-                        events,
-                        locations: extractLocations(events),
-                    });
-                }
-            });
-        }
-        if(!navigator.onLine){
             this.setState({
-                offlineAlertText: "You are offline. The displayed event list may not be up to date."
+                showWelcomeScreen: !(code || isTokenValid)
             });
-        } else {
-            this.setState({
-                offlineAlertText:""
-            });
+
+            if ((code || isTokenValid) && this.mounted) {
+                getEvents().then((events) => {
+                    if (this.mounted) {
+                        this.setState({
+                            events,
+                            locations: extractLocations(events),
+                            offlineAlertText: ""
+                        });
+                    }
+                });
+            } else {
+                getEvents().then((events) => {
+                    if (this.mounted) {
+                        this.setState({
+                            events,
+                            locations: extractLocations(events),
+                            offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
+                            showWelcomeScreen: false
+                        });
+                    }
+                });
+            }
         }
     }
 
