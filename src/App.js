@@ -21,40 +21,61 @@ class App extends Component {
     async componentDidMount() {
         this.mounted = true;
 
-        if (!(navigator.onLine && !window.location.href.startsWith('http://localhost'))) {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({
-                        events,
-                        locations: extractLocations(events),
-                        offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
-                        showWelcomeScreen: false
-                    });
-                }
+        /**
+         * If localhost => Show Event List with mock entries
+         * If offline =>
+         * - SHow Event List with Cached Entries
+         * - hide Welcome Screen
+         * If logged in
+         *  - Hide Welcome Screen
+         *  - Fetch Events
+         *  - Show Event List
+         * Else (Not local, not offline, not logged in) => Welcome Screen
+         */
+        const isLocalhost = window.location.href.startsWith('http://localhost');
+        const isOffline = !navigator.onLine;
+
+        if(isLocalhost){
+            this.hideWelcomeScreen();
+            this.fetchAndShowEvents();
+        } else if(isOffline){
+            this.setState({
+                offlineAlertText: 'You are offline.'
             });
-            return;
+            this.hideWelcomeScreen();
+            this.fetchAndShowEvents();
+        } else {
+            const accessToken = localStorage.getItem('access_token');
+            const isLoggedIn = !(await checkToken(accessToken)).error;
+            const searchParams = new URLSearchParams(window.location.search);
+            const code = searchParams.get("code");
+
+            if(isLoggedIn || code){
+                this.hideWelcomeScreen();
+                this.fetchAndShowEvents();
+            } else {
+                this.setState({
+                    showWelcomeScreen: true,
+                });
+            }
         }
+    }
 
-        const accessToken = localStorage.getItem('access_token');
-        const isTokenValid = !(await checkToken(accessToken)).error;
-        const searchParams = new URLSearchParams(window.location.search);
-        const code = searchParams.get("code");
-
+    hideWelcomeScreen() {
         this.setState({
-            showWelcomeScreen: !(code || isTokenValid)
-        });
+            showWelcomeScreen: false,
+        })
+    }
 
-        if (code || isTokenValid) {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({
-                        events,
-                        locations: extractLocations(events),
-                        offlineAlertText: ''
-                    });
-                }
-            });
-        }
+    fetchAndShowEvents() {
+        getEvents().then((events) => {
+            if (this.mounted) {
+                this.setState({
+                    events,
+                    locations: extractLocations(events),
+                });
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -85,11 +106,11 @@ class App extends Component {
             <div className="App">
                 <NavBar/>
                 <main>
-
                     <div className="input-wrapper">
                         <OfflineAlert
-                            className="offline-alert"
-                            text={this.state.offlineAlertText}/>
+                            style={{color: "#f16775"}}
+                            text={this.state.offlineAlertText}
+                        />
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}

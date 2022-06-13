@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://LisaPMunich.github.io/meet-up-app",
+  "engines": {
+    "node": "16.14.x"
+  },
   "dependencies": {
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -58,7 +61,6 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "enzyme": "^3.11.0",
     "gh-pages": "^4.0.0",
     "jest-cucumber": "^3.0.1",
