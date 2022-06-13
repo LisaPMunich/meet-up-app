@@ -12,8 +12,8 @@ const credentials = {
     auth_uri: "https://accounts.google.com/o/oauth2/auth",
     token_uri: "https://oauth2.googleapis.com/token",
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-    redirect_uris: ["https://lisapmunich.github.io/meet-up-app/"],
-    javascript_origins: ["https://lisapmunich.github.io", "http://localhost:3000"],
+    redirect_uris: ["https://meet-up-app-2022.herokuapp.com/"],
+    javascript_origins: ["https://meet-up-app-2022.herokuapp.com", "http://localhost:3000"],
 };
 
 const {client_secret, client_id, redirect_uris, calendar_id} = credentials;
