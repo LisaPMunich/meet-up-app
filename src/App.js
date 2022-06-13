@@ -104,14 +104,13 @@ class App extends Component {
 
         return (
             <div className="App">
+                <OfflineAlert
+                    className="offline-alert"
+                    text={this.state.offlineAlertText}
+                />
                 <NavBar/>
                 <main>
-
                     <div className="input-wrapper">
-                        <OfflineAlert
-                            className="offline-alert"
-                            text={this.state.offlineAlertText}
-                        />
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}
