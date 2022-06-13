@@ -41,7 +41,7 @@ class App extends Component {
             this.setState({
                 offlineAlertText: 'You are offline. The displayed event list may not be up to date.'
             });
-
+            this.hideWelcomeScreen();
             this.fetchAndShowEvents();
         } else {
             const accessToken = localStorage.getItem('access_token');
