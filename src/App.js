@@ -40,7 +40,7 @@ class App extends Component {
             this.fetchAndShowEvents();
         } else if(isOffline){
             this.setState({
-                offlineAlertText: 'You are offline. The displayed list does not refresh.'
+                offlineAlertText: 'You are offline.'
             });
             this.hideWelcomeScreen();
             this.fetchAndShowEvents();
@@ -108,9 +108,12 @@ class App extends Component {
                 <main>
 
                     <div className="input-wrapper">
-                        <OfflineAlert
-                            className="offline-alert"
-                            text={this.state.offlineAlertText}/>
+                        <div className="offline-alert">
+                            <OfflineAlert
+                                className="offline-alert"
+                                text={this.state.offlineAlertText}
+                            />
+                        </div>
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}
