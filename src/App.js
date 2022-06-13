@@ -110,7 +110,6 @@ class App extends Component {
                     <div className="input-wrapper">
                         <div className="offline-alert">
                             <OfflineAlert
-                                className="offline-alert"
                                 text={this.state.offlineAlertText}
                             />
                         </div>
