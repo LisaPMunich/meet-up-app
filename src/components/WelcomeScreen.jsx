@@ -31,7 +31,7 @@ function WelcomeScreen(props) {
                             </div>
                         </div>
                         <a
-                            href="https://lisapmunich.github.io/meet/privacy.html"
+                            href="https://meet-up-app-2022.herokuapp.com/privacy.html"
                             rel="nofollow noopener"
                             className="privacy-policy-link"
                         >
