@@ -13,7 +13,7 @@ class App extends Component {
     state = {
         events: [],
         locations: [],
-        showWelcomeScreen: undefined,
+        showWelcomeScreen: true,
         eventCount: 32,
         offlineAlertText: "",
     }
@@ -41,18 +41,18 @@ class App extends Component {
                         });
                     }
                 });
-            } else {
-                getEvents().then((events) => {
-                    if (this.mounted) {
-                        this.setState({
-                            events,
-                            locations: extractLocations(events),
-                            offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
-                            showWelcomeScreen: false
-                        });
-                    }
-                });
             }
+        } else {
+            getEvents().then((events) => {
+                if (this.mounted) {
+                    this.setState({
+                        events,
+                        locations: extractLocations(events),
+                        offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
+                        showWelcomeScreen: false
+                    });
+                }
+            });
         }
     }
 
@@ -81,7 +81,7 @@ class App extends Component {
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
 
         if (this.state.showWelcomeScreen === undefined) return <div
-            className="App" />
+            className="App"/>
 
         return (
             <div className="App">
