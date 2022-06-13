@@ -46,7 +46,7 @@ main{
   box-shadow: 0 2px 4px 0 rgba(241, 103, 117, 1);
   position: fixed;
   z-index:1000;
-  top: 10px;
+  top: 30px;
   left: 10px;
 }
 
