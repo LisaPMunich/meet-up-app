@@ -20,40 +20,93 @@ class App extends Component {
 
     async componentDidMount() {
         this.mounted = true;
-        if (navigator.onLine && !window.location.href.startsWith('http://localhost')) {
 
+        /**
+         * If localhost => Show Event List with mock entries
+         * If offline => SHow Event List with Cached Entries
+         * If logged in
+         *  - Hide Welcome Screen
+         *  - Fetch Events
+         *  - Show Event List
+         * Else (Not local, not offline, not logged in) => Welcome Screen
+         */
+        const isLocalhost = window.location.href.startsWith('http://localhost');
+        const isOffline = !navigator.onLine;
+
+        if(isLocalhost){
+            this.hideWelcomeScreen();
+
+            this.fetchAndShowEvents();
+        } else if(isOffline){
+            this.setState({
+                offlineAlertText: 'You are offline. The displayed event list may not be up to date.'
+            });
+
+            this.fetchAndShowEvents();
+        } else {
             const accessToken = localStorage.getItem('access_token');
-            const isTokenValid = !(await checkToken(accessToken)).error;
+            const isLoggedIn = !(await checkToken(accessToken)).error;
             const searchParams = new URLSearchParams(window.location.search);
             const code = searchParams.get("code");
 
-            this.setState({
-                showWelcomeScreen: !(code || isTokenValid)
-            });
-
-            if ((code || isTokenValid) && this.mounted) {
-                getEvents().then((events) => {
-                    if (this.mounted) {
-                        this.setState({
-                            events,
-                            locations: extractLocations(events),
-                            offlineAlertText: ""
-                        });
-                    }
+            if(isLoggedIn || code){
+                this.hideWelcomeScreen();
+                this.fetchAndShowEvents();
+            } else {
+                this.setState({
+                    showWelcomeScreen: true,
                 });
             }
-        } else {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({
-                        events,
-                        locations: extractLocations(events),
-                        offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
-                        showWelcomeScreen: false
-                    });
-                }
-            });
         }
+
+        // ---
+
+        // if (!(navigator.onLine && !window.location.href.startsWith('http://localhost'))) {
+        //
+        // }
+        //
+        // if (navigator.onLine && !window.location.href.startsWith('http://localhost')) {
+        //
+        //     const accessToken = localStorage.getItem('access_token');
+        //     const isTokenValid = !(await checkToken(accessToken)).error;
+        //     const searchParams = new URLSearchParams(window.location.search);
+        //     const code = searchParams.get("code");
+        //
+        //     if (code || isTokenValid) {
+        //         this.setState({
+        //             showWelcomeScreen: false
+        //         });
+        //     }
+        // }
+        //
+        // getEvents().then((events) => {
+        //     if (this.mounted) {
+        //         this.setState({
+        //             events,
+        //             locations: extractLocations(events),
+        //             offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
+        //             showWelcomeScreen: false
+        //         });
+        //     }
+        // });
+
+    }
+
+    hideWelcomeScreen() {
+        this.setState({
+            showWelcomeScreen: false,
+        })
+    }
+
+    fetchAndShowEvents() {
+        getEvents().then((events) => {
+            if (this.mounted) {
+                this.setState({
+                    events,
+                    locations: extractLocations(events),
+                });
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -79,9 +132,6 @@ class App extends Component {
 
     render() {
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
-
-        if (this.state.showWelcomeScreen === undefined) return <div
-            className="App"/>
 
         return (
             <div className="App">
