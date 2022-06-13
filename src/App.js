@@ -108,11 +108,10 @@ class App extends Component {
                 <main>
 
                     <div className="input-wrapper">
-                        <div className="offline-alert">
-                            <OfflineAlert
-                                text={this.state.offlineAlertText}
-                            />
-                        </div>
+                        <OfflineAlert
+                            className="offline-alert"
+                            text={this.state.offlineAlertText}
+                        />
                         <CitySearch
                             locations={this.state.locations}
                             updateEvents={this.updateEvents}
