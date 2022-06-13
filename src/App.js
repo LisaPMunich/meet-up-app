@@ -23,7 +23,9 @@ class App extends Component {
 
         /**
          * If localhost => Show Event List with mock entries
-         * If offline => SHow Event List with Cached Entries
+         * If offline =>
+         * - SHow Event List with Cached Entries
+         * - hide Welcome Screen
          * If logged in
          *  - Hide Welcome Screen
          *  - Fetch Events
@@ -35,11 +37,10 @@ class App extends Component {
 
         if(isLocalhost){
             this.hideWelcomeScreen();
-
             this.fetchAndShowEvents();
         } else if(isOffline){
             this.setState({
-                offlineAlertText: 'You are offline. The displayed event list may not be up to date.'
+                offlineAlertText: 'You are offline. The displayed list does not refresh.'
             });
             this.hideWelcomeScreen();
             this.fetchAndShowEvents();
@@ -58,38 +59,6 @@ class App extends Component {
                 });
             }
         }
-
-        // ---
-
-        // if (!(navigator.onLine && !window.location.href.startsWith('http://localhost'))) {
-        //
-        // }
-        //
-        // if (navigator.onLine && !window.location.href.startsWith('http://localhost')) {
-        //
-        //     const accessToken = localStorage.getItem('access_token');
-        //     const isTokenValid = !(await checkToken(accessToken)).error;
-        //     const searchParams = new URLSearchParams(window.location.search);
-        //     const code = searchParams.get("code");
-        //
-        //     if (code || isTokenValid) {
-        //         this.setState({
-        //             showWelcomeScreen: false
-        //         });
-        //     }
-        // }
-        //
-        // getEvents().then((events) => {
-        //     if (this.mounted) {
-        //         this.setState({
-        //             events,
-        //             locations: extractLocations(events),
-        //             offlineAlertText: 'You are offline. The displayed event list may not be up to date.',
-        //             showWelcomeScreen: false
-        //         });
-        //     }
-        // });
-
     }
 
     hideWelcomeScreen() {
