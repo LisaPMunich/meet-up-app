@@ -45,9 +45,9 @@ main{
   -webkit-box-shadow: 0 2px 4px 0 rgba(241, 103, 117, 1);
   box-shadow: 0 2px 4px 0 rgba(241, 103, 117, 1);
   position: fixed;
-  z-index:99;
-  top: 5px;
-  left: 5px;
+  z-index:1000;
+  top: 10px;
+  left: 10px;
 }
 
 
