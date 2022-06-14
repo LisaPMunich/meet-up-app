@@ -8,6 +8,8 @@ import {extractLocations, getEvents, checkToken, getAccessToken} from './compone
 import './styling/nprogress.css';
 import {OfflineAlert} from "./components/Alert";
 import WelcomeScreen from './components/WelcomeScreen';
+import ScatterChart from './components/ScatterChart';
+
 
 class App extends Component {
     state = {
@@ -99,6 +101,8 @@ class App extends Component {
         })
     }
 
+
+
     render() {
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
 
@@ -122,7 +126,7 @@ class App extends Component {
                             eventCount={this.state.eventCount}
                         />
                     </div>
-
+                    <ScatterChart/>
                     <EventList
                         className="event-list"
                         events={limitedEvents}
