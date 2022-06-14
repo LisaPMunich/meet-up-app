@@ -1,11 +1,17 @@
-# Meet Up App
+# Meet Up App (pwa)
 
-<img src="https://user-images.githubusercontent.com/99111208/170891142-39111b16-c955-46fb-b4a3-9a8b9f9c9246.png" alt="Screenshot Meet-up-app">
+![Screenshot 2022-06-14 at 19 33 15](https://user-images.githubusercontent.com/99111208/173640689-d651fe51-aae6-4c2f-a0dc-c7275bab29e2.png)
+![Screenshot 2022-06-14 at 19 36 59](https://user-images.githubusercontent.com/99111208/173641288-94fc2160-bdb7-4f09-a629-84c56a2a3558.png)
+
 
 ## Description
 
-The Meet Up App allows users to view upcoming events for a specific city by using the Google Calendar API.
-Applying the TDD approach this React App combines the concepts of serverless architecture and progressive web applications.
+The Meet Up App allows users to view upcoming frontend meet-ups worldwide and to filter them by location and number of events.
+This is a fully-tested **serverless progressive web application (pwa)** using a test-driven development approach (**TDD**). It reaches **100% code coverage**.
+
+An **OOP** approach is applied to create alerts for users (including an offline alert via service worker).
+An external Meetup API is used to fetch the events. **OAuth2** Authentication is handled with Google API and authorization using **AWS Lambda**.
+The app also includes a **visualization of events** by city in a graph (via **chart.js** library).
 
 ## User stories
 
@@ -107,6 +113,8 @@ as well as on IE11.
 * The app must display well on all screen sizes (including mobile and tablet) widths of
 1920px and 320px.
 * The app must pass Lighthouse’s PWA checklist.
+<img src="https://user-images.githubusercontent.com/99111208/173639393-1a170c7f-e403-42bc-ad12-695a10a2dbf1.png" alt="Lighthouse Report">
+
 * The app must work offline or in slow network conditions with the help of a service
 worker.
 * Users may be able to install the app on desktop and add the app to their home screen
@@ -124,8 +132,6 @@ To run the tests from the command line, install Google Chrome then run:
 ```
 npm run test
 ```
-
-## Monitor and test the app
 
 
 
