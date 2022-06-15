@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Scatter } from 'react-chartjs-2';
+import {Scatter} from 'react-chartjs-2';
 import {extractLocations} from './api';
 import '../styling/scatter-chart.css';
 import {
@@ -22,8 +22,6 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-
-
 
 export default class ScatterChart extends Component {
     state = {
