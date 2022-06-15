@@ -126,7 +126,7 @@ class App extends Component {
                             eventCount={this.state.eventCount}
                         />
                     </div>
-                    <ScatterChart/>
+                    <ScatterChart eventData={limitedEvents}/>
                     <EventList
                         className="event-list"
                         events={limitedEvents}
