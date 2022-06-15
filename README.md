@@ -1,137 +1,144 @@
 # Meet Up App (pwa)
 
-![Screenshot 2022-06-14 at 19 33 15](https://user-images.githubusercontent.com/99111208/173640689-d651fe51-aae6-4c2f-a0dc-c7275bab29e2.png)
-![Screenshot 2022-06-14 at 19 36 59](https://user-images.githubusercontent.com/99111208/173641288-94fc2160-bdb7-4f09-a629-84c56a2a3558.png)
+
+
+<img src="https://user-images.githubusercontent.com/99111208/173640689-d651fe51-aae6-4c2f-a0dc-c7275bab29e2.png"  height="300" width="450">
+
+<img src="https://user-images.githubusercontent.com/99111208/173641288-94fc2160-bdb7-4f09-a629-84c56a2a3558.png"  height="300">
 
 
 ## Description
 
 The Meet Up App allows users to view upcoming frontend meet-ups worldwide and to filter them by location and number of events.
-This is a fully-tested **serverless progressive web application (pwa)** using a test-driven development approach (**TDD**). It reaches **100% code coverage**.
+This is a fully-tested **serverless progressive web application (pwa)** using a test-driven development approach (**TDD**). It reaches near **>90% code coverage**.
 
 An **OOP** approach is applied to create alerts for users (including an offline alert via service worker).
 An external Meetup API is used to fetch the events. **OAuth2** Authentication is handled with Google API and authorization using **AWS Lambda**.
 The app also includes a **visualization of events** by city in a graph (via **chart.js** library).
 
+
+### use it live
+
+<table>
+<tr>
+<td>
+<img src="https://user-images.githubusercontent.com/99111208/163397361-5126a0ff-a116-4a57-9773-c1878285b045.svg" alt="Heroku icon" width="30">
+</td>
+<td>
+<a href="https://meet-up-app-2022.herokuapp.com/">Click here to see my live page on Heroku</a>
+</td>
+</tr>
+</table>
+
+## Issues I would like to improve given time
+
+- [ ] install ESLint
+- [ ] improve performance 
+  - tackling issues highlighted in Lighthouse
+  - by making use of already implemented local storage (caching)
+- [ ] add a build that checks test coverage and lints
+- [ ] accessibility improvement (by installing "tota11y")
+- [ ] convert class components to functional components
+- [ ] increase test coverage
+
+
+## Implemented Technical Requirements, Features and Scenarios
+
+### Technical Requirements
+* works on the latest versions of Chrome, Firefox, Safari, Edge, and Opera, as well as on IE11.
+* displays well on all screen sizes (including mobile and tablet) widths of 1920px and 320px.
+* users may be able to install the app on homescreen and add the app to their home screen on mobile.
+* works offline or in slow network conditions with the help of a service
+  worker.
+
+
+### Features and Scenarios used for TDD approach
+- [x] **I. User can filter events by city**
+  - Scenario 1: When user hasn't searched for a city, show upcoming events from all cities.
+  - Scenario 2: User should see a list of suggestions when they search for a city.
+  - Scenario 3: User can select a city from the suggested list.
+- [x] **II. User should see more/less details on an event**
+  - Scenario 1: An event element is collapsed by default
+  - Scenario 2: User can expand an event to see its details
+  - Scenario 3: User can collapse an event to hide its details
+- [x] **III. User should be able to specify number of events per city**
+    - Scenario 1: When user has not specified a number, 32 is the default number
+    - Scenario 2: User can change the number of events they want to see
+- [x] **IV. User should be able to use the app when offline**
+    - Scenario 1: Show cached data when there's no internet connection
+    - Scenario 2: Show offline alert when user interacts with the app while offline
+- [x] **V. User should be able to see visualized data on the events**
+    - Scenario 1: Show a scatter chart with the number of upcoming events in each city
+    - Scenario 2: Show a pie chart with the topics of events in all cities
+
+
+## Details from Project Implementation (User stories, Gherkin Scenarios)
+
+<details>
+  <summary>Click to expand!</summary>
+
 ## User stories
+1. **As a user I should be able to filter events by city
+   So that I can see the list of events that take place in that city.**
 
-**As a user I should be able to filter events by city
-So that I can see the list of events that take place in that city.**
+2. **As a user, I would like to be able to expand (and then again collapse) details on events so that I can get more information on an event.**
 
-**As a user, I would like to be able to expand (and then again collapse) details on events so that I can get more information on an event.**
+3. **As a user, I would like to be able to change the default number of 32 to any number of events, so that I can get a list of as many events as I have chosen.**
 
-**As a user, I would like to be able to change the default number of 32 to any number of events, so that I can get a list of as many events as I have chosen.**
+4. **As a user, I would like to use the app offline, so that I revisit the content I looked at the last time I was online.**
 
-**As a user, I would like to use the app offline, so that I revisit the content I looked at the last time I was online.**
+5. **As a user, I would like to see a chart when selecting a specific city, so that I know how many future events there are for the city selected.**
 
-**As a user, I would like to see a chart when selecting a specific city, so that I know how many future events there are for the city selected.**
+6. **As a user, I would like to be able to add the app shortcut to my home screen so that I can open the app faster.**
 
-**As a user, I would like to be able to add the app shortcut to my home screen so that I can open the app faster.**
+## Example Testing Features and Scenarios (used for Gherkin)
 
+**Feature: User should see more or less details on an event**
 
-## Test Scenarios (using Gherkin syntax)
+**Scenario: An event is collapsed by default**
+Given they open the app
+And a city or number of events has been selected
+When a list of events is being displayed
+Then the single event details are collapsed by default
 
-### FEATURE 1: USER SHOULD BE ABLE TO FILTER EVENTS BY CITY
+**Scenario: User can expand an event to see its details**
+Given a list of events is being displayed
+When the user clicks on a "show details" button of one event
+Then more details of the selected event are displayed
 
-#### Scenario 1: WHEN USER HASN'T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.
-Given the user hasn’t searched for any city, <br>
-When they open the app, <br>
-Then they should see a list of all upcoming events.
+**Scenario: User can collapse an event to hide its details**
+Given details of one selected event have been displayed
+When the user clicks on a "hide details" button in the event details view
+Then the detailed view collapses to hide the details again
 
-#### Scenario 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY.
-Given the main page is open, <br>
-When the user starts typing in the city textbox, <br>
-Then they should see a list of cities (suggestions) that match what they’ve typed.
-
-#### Scenario 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
-Given the user was typing “Munich” in the city textbox <br>
-and the list of suggested cities is being displayed, <br>
-When the user selects a city from the list, <br>
-Then their city should be changed to that city <br>
-and the user should receive a list of upcoming events in that city.
-
-### FEATURE 2: USER SHOULD SEE MORE/LESS DETAILS ON AN EVENT
-
-#### Scenario 1: AN EVENT ELEMENT IS COLLAPSED BY DEFAULT
-Given a city or number of events has been selected,  <br>
-When a list of events is being displayed, <br>
-Then the single event details are collapsed by default.
-
-#### Scenario 2: USER CAN EXPAND AN EVENT TO SEE ITS DETAILS
-Given a list of events is being displayed, <br>
-When the user clicks on a "show details" button of one event, <br>
-Then more details of the selected event are displayed.
-
-#### Scenario 3: USER CAN COLLAPSE AN EVENT TO HIDE ITS DETAILS
-Given details of one selected event have been displayed, <br>
-When the user clicks on a "hide details" button in the event details view, <br>
-Then the detailed view collapses to hide the details again.
+</details>
 
 
-### FEATURE 3: USER SHOULD BE ABLE TO SPECIFY NUMBER OF EVENTS PER CITY
+## Reports from Testing and Monitoring
 
-#### Scenario 1: WHEN USER HASN'T SPECIFIED A NUMBER, 32 IS THE DEFAULT NUMBER
-Given the user has selected a city, <br>
-When they have not specified a number of events to be displayed, <br>
-Then the search box underneath the city textbox will contain the default value of 32.
+<details>
+  <summary>Click to expand!</summary>
 
-#### Scenario 2: USER CAN CHANGE THE NUMBER OF EVENTS THEY WANT TO SEE
-Given the user has selected a city, <br>
-When they click into the search box underneath, <br>
-Then they can type in a number to specify the number of events to show.
+## Online Monitoring, status: 2022-06-05
 
-### FEATURE 4: USER SHOULD BE ABLE TO USE THE APP WHEN OFFLINE
+Please be aware, that this is a performance report conducted on the deployed GitHub page. In the meantime I had to deploy the page to heroku, because GitHub was having an internal bug with deployment updated files.
 
-#### Scenario 1: SHOW CACHED DATA WHEN THERE'S NO INTERNET CONNECTION
-Given the user has viewed content in the app while online, <br>
-When they are offline and the data has been cached, <br>
-They can revisit this content.
+<img alt="Report Atatus and Lighthouse" src="https://user-images.githubusercontent.com/99111208/173822836-dddedfcc-b0f1-411d-a98b-98e7ac1819aa.png" width="550">
 
-#### Scenario 2: SHOW ERROR WHEN USER CHANGES THE SETTINGS (CITY, TIME RANGE)
-Given the user has viewed content in the app while online, <br>
-When they are offline and change the settings for city or time range,  <br>
-They will be shown error messages.
+## Testing (Jest, Enzyme, React testing library), status 2022-05-25
+
+<img alt="Screenshot_4 3_unittest_jest_coverage" src="https://user-images.githubusercontent.com/99111208/173823673-32cd4c90-535b-44aa-89e7-72806755d053.png" width="550">
+
+## Qualification as pwa according to Lighthouse checklist
+
+<img src="https://user-images.githubusercontent.com/99111208/173639393-1a170c7f-e403-42bc-ad12-695a10a2dbf1.png" alt="Lighthouse Report" width="550">
+
+</details>
 
 
-### FEATURE 5: USER SHOULD BE ABLE TO SEE VISUALIZED DATA ON THE EVENTS
+## Project Dependencies
 
-#### Scenario 1: SHOW A CHART WITH THE NUMBER OF UPCOMING EVENTS IN EACH CITY
-Given a list of events is being displayed, <br>
-When the user clicks on a "show charts" button, <br>
-Then they will be able to see a chart visualizing either the number of events by city (bar graph) or the topics of events in all cities (cake chart).
 
-## Technical Requirements (according to Project Brief)
-
-The app must be a React application.
-* The app must be built using the TDD technique.
-* The app must use the Google Calendar API and OAuth2 authentication flow.
-* The app must use serverless functions (AWS lambda is preferred) for the authorization
-server instead of using a traditional server.
-* The app’s code must be hosted in a Git repository on GitHub.
-* The app must work on the latest versions of Chrome, Firefox, Safari, Edge, and Opera,
-as well as on IE11.
-* The app must display well on all screen sizes (including mobile and tablet) widths of
-1920px and 320px.
-* The app must pass Lighthouse’s PWA checklist.
-<img src="https://user-images.githubusercontent.com/99111208/173639393-1a170c7f-e403-42bc-ad12-695a10a2dbf1.png" alt="Lighthouse Report">
-
-* The app must work offline or in slow network conditions with the help of a service
-worker.
-* Users may be able to install the app on desktop and add the app to their home screen
-on mobile.
-* The app must be deployed on GitHub Pages.
-* The API call must use React axios and async/await.
-* The app must implement an alert system using an OOP approach to show information to
-the user.
-* The app must make use of data visualization (recharts preferred).
-* The app must be covered by tests with a coverage rate >= 90%.
-* The app must be monitored using an online monitoring tool.
-
-## Running the Tests
-To run the tests from the command line, install Google Chrome then run:
-```
-npm run test
-```
-
+## What did I learn?
 
 
