@@ -109,7 +109,7 @@ export default function PieChart({eventData}) {
     return (
         <div className="pie-chart-container">
             <div className="pie-chart">
-                <h4 className="pie-chart-title">Events by topic</h4>
+                <h4 className="pie-chart-title">Events by Topic</h4>
                 <Pie
                     options={{
                         layout: {

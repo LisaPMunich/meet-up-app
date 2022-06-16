@@ -82,7 +82,7 @@ export default class ScatterChart extends Component {
         return (
             <div className="scatter-chart-container">
                 <div className="scatter-chart">
-                    <h4 className="scatter-chart-title">Events in each city</h4>
+                    <h4 className="scatter-chart-title">Events in each City</h4>
                     <Scatter
                         options={{
                             layout: {
