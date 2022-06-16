@@ -13,6 +13,7 @@ import {
     Legend,
 } from 'chart.js';
 import PropTypes from "prop-types";
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -29,19 +30,15 @@ export default class ScatterChart extends Component {
         locations: [],
         cities: [],
     };
-    constructor(props) {
-        super(props);
-        console.log('constructor called with props: ', props);
-    }
-    componentDidMount() {
-    }
+
+
     getChartData(locations, events) {
         const cities = [];
         const data = locations.map(
             (location) => {
                 const number = events.filter((event) => event.location === location).length
-                const city = location.split(', ').shift()
-                cities.push(cities);
+                const city = this.getCityFromLocation(location)
+                cities.push(city);
 
                 return {
                     x: city,
@@ -49,9 +46,12 @@ export default class ScatterChart extends Component {
                 };
             });
         return {
-            labels: cities,
+            //labels: cities,
             datasets: [
                 {
+                    datalabels: {
+                        labels: { title: null },
+                    },
                     data,
                     backgroundColor: '#F16775',
                     pointRadius: 6,
@@ -60,61 +60,76 @@ export default class ScatterChart extends Component {
         };
     }
 
+    /**
+     * @param {string} location
+     * @returns {string}
+     */
+    getCityFromLocation(location) {
+        if (location.includes(',')){
+            return location.split(', ').shift();
+        } else if (location.includes('-')){
+            return location.split(' - ').shift();
+        } else {
+            console.log("There is a syntax error in the location", location)
+            return location
+        }
+    }
+
     render() {
         const events = this.props.eventData;
         const locations = extractLocations(events);
-        const cities = locations.map(location => location.split(', ').shift());
-        console.log('render', events)
+        const cities = locations.map(location => this.getCityFromLocation(location));
         return (
-            <div style={{position: "relative", margin: 40}}>
-                <h4 className="chart-title">Events in each city</h4>
-                <Scatter
-                    height={200}
-                    width={300}
-                    options={{
-                        layout:{
-                            padding: 20,
-                        },
-                        responsive: true,
-                        plugins:{
-                            legend:{
-                                display: false,
-                            }
-                        },
-                        scales: {
-                            x: {
-                                type: 'category',
-                                labels: cities,
-                                ticks:{
-                                    color: "#fff",
-                                    font:{
-                                        size: 16,
-                                    }
-                                },
-                                grid: {
-                                    color: '#FEE36E',
-                                    borderColor: '#FEE36E',
+            <div className="scatter-chart-container">
+                <div className="scatter-chart">
+                    <h4 className="scatter-chart-title">Events in each city</h4>
+                    <Scatter
+                        options={{
+                            layout: {
+                                padding: 20,
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: {
+                                legend: {
+                                    display: false,
                                 }
                             },
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    stepSize: 1,
-                                    color: "#fff",
-                                    font:{
-                                        size: 16,
+                            scales: {
+                                x: {
+                                    type: 'category',
+                                    //labels: cities,
+                                    ticks: {
+                                        color: "#fff",
+                                        font: {
+                                            size: 16,
+                                        }
                                     },
+                                    grid: {
+                                        color: '#FEE36E',
+                                        borderColor: '#FEE36E',
+                                    }
                                 },
-                                grid: {
-                                    color: '#FEE36E',
-                                    borderColor: '#FEE36E',
-                                },
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1,
+                                        color: "#fff",
+                                        font: {
+                                            size: 16,
+                                        },
+                                    },
+                                    grid: {
+                                        color: '#FEE36E',
+                                        borderColor: '#FEE36E',
+                                    },
+                                }
                             }
-                        }
-                    }}
+                        }}
 
-                    data={this.getChartData(locations, events)}
-                />
+                        data={this.getChartData(locations, events)}
+                    />
+                </div>
             </div>
         )
     }

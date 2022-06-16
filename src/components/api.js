@@ -1,4 +1,4 @@
-import {mockData} from '../mock-data';
+import {mockData, mockFullData} from '../mock-data';
 import axios from 'axios';
 import NProgress from 'nprogress';
 
@@ -20,7 +20,7 @@ export const checkToken = async (accessToken) => {
 
 export const getEvents = async() => {
     if (window.location.href.startsWith('http://localhost')) {
-        return mockData;
+        return mockFullData;
     }
     if (!navigator.onLine) {
         const data = localStorage.getItem("lastEvents");

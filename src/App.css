@@ -50,6 +50,39 @@ main{
   left: 10px;
 }
 
+.charts-button-wrapper{
+  text-align:center;
+}
+
+.charts-button{
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 30px;
+  min-width: 120px;
+  padding: 5px;
+  margin: 20px 20px 5px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1em;
+  cursor: pointer;
+  color: #2a2a2a;
+  background-color: #fee36e;
+  border: 1px solid #fee36e;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.charts-button:hover{
+  background-color: #f16775;
+  border: 1px solid #f16775;
+}
+
+.charts{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 
 
 

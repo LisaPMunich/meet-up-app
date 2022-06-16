@@ -1,4 +1,19 @@
-.chart-title{
+
+
+.scatter-chart-container{
+    position: relative;
+    margin: auto;
+    height: 60%;
+    width: 70%;
+}
+
+.scatter-chart{
+    margin: 40px 0 0 0;
+}
+
+.scatter-chart-title{
     text-align: center;
     margin-bottom: 0;
 }
+
+

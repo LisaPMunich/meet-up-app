@@ -9,6 +9,7 @@ import './styling/nprogress.css';
 import {OfflineAlert} from "./components/Alert";
 import WelcomeScreen from './components/WelcomeScreen';
 import ScatterChart from './components/ScatterChart';
+import PieChart from './components/PieChart';
 
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
         showWelcomeScreen: true,
         eventCount: 32,
         offlineAlertText: "",
+        showChartDetails: false,
     }
 
     async componentDidMount() {
@@ -80,6 +82,12 @@ class App extends Component {
         });
     }
 
+    handleClick = (event) => {
+        this.setState({
+            showChartDetails: !this.state.showChartDetails,
+        });
+    }
+
     componentWillUnmount() {
         this.mounted = false
     }
@@ -105,6 +113,9 @@ class App extends Component {
 
     render() {
         const limitedEvents = this.state.events.slice(0, this.state.eventCount);
+        const buttonText = this.state.showChartDetails
+            ? "Hide Charts"
+            : "Show Charts";
 
         return (
             <div className="App">
@@ -126,7 +137,25 @@ class App extends Component {
                             eventCount={this.state.eventCount}
                         />
                     </div>
-                    <ScatterChart eventData={limitedEvents}/>
+                    <div className="charts-button-wrapper">
+                        <button
+                            onClick={this.handleClick}
+                            className="charts-button">
+                            {buttonText}
+                        </button>
+                    </div>
+
+                    {this.state.showChartDetails && (
+                        <div className="charts">
+                            <ScatterChart
+                                eventData={limitedEvents}
+                            />
+                            <PieChart
+                                eventData={limitedEvents}
+                            />
+                        </div>
+                    )
+                    }
                     <EventList
                         className="event-list"
                         events={limitedEvents}
