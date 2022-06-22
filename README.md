@@ -131,10 +131,20 @@ Please be aware, that this is a performance report conducted on the deployed Git
 
 
 ## Project Dependencies
+
+<details>
+  <summary>Click to expand!</summary>
+
+### production dependencies
+
 <img src="https://user-images.githubusercontent.com/99111208/174773596-16529a2d-de29-4d9c-bb42-27396920e88c.png" alt="Production Dependencies">
 <br>
+
+### dev dependencies
+
 <img src="https://user-images.githubusercontent.com/99111208/174773580-398e07b3-68b5-419c-bc42-c5bd32129e05.png" alt="Dev Dependencies">
 
+</details>
 
 ## What did I learn?
 
