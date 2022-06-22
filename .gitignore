@@ -31,3 +31,4 @@ yarn-debug.log*
 yarn-error.log*
 auth-server/node_modules
 not_public
+.idea
