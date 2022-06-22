@@ -5,8 +5,8 @@
 <img src="https://user-images.githubusercontent.com/99111208/173640689-d651fe51-aae6-4c2f-a0dc-c7275bab29e2.png"  height="300" width="450">
 
 
-<img src="https://user-images.githubusercontent.com/99111208/175063158-4bc83802-0506-45b6-a2d8-c313d7a2474c.png" height="300" width="250">
-<img src="https://user-images.githubusercontent.com/99111208/175062588-ff330423-e6d6-4c05-a071-70840dccb7da.png" height="300" width="250">
+<img src="https://user-images.githubusercontent.com/99111208/175063158-4bc83802-0506-45b6-a2d8-c313d7a2474c.png" height="300">
+<img src="https://user-images.githubusercontent.com/99111208/175062588-ff330423-e6d6-4c05-a071-70840dccb7da.png" height="300">
 
 
 ## Description
