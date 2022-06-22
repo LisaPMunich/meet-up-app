@@ -1,10 +1,12 @@
-# Meet Up App (pwa)
+# Meet Up App (PWA)
 
 
 
 <img src="https://user-images.githubusercontent.com/99111208/173640689-d651fe51-aae6-4c2f-a0dc-c7275bab29e2.png"  height="300" width="450">
 
-<img src="https://user-images.githubusercontent.com/99111208/173641288-94fc2160-bdb7-4f09-a629-84c56a2a3558.png"  height="300">
+
+<img src="https://user-images.githubusercontent.com/99111208/175063158-4bc83802-0506-45b6-a2d8-c313d7a2474c.png" height="300" width="250">
+<img src="https://user-images.githubusercontent.com/99111208/175062588-ff330423-e6d6-4c05-a071-70840dccb7da.png" height="300" width="250">
 
 
 ## Description
@@ -25,10 +27,11 @@ The app also includes a **visualization of events** by city in a graph (via **ch
 <img src="https://user-images.githubusercontent.com/99111208/163397361-5126a0ff-a116-4a57-9773-c1878285b045.svg" alt="Heroku icon" width="30">
 </td>
 <td>
-<a href="https://meet-up-app-2022.herokuapp.com/">Click here to see my live page on Heroku</a>
+<a href="https://meet-up-app-2022.herokuapp.com/">Click here to see my live page on Heroku </a>
 </td>
 </tr>
 </table>
+[currently being verified by Google]
 
 ## Issues I would like to improve given time
 
@@ -40,39 +43,30 @@ The app also includes a **visualization of events** by city in a graph (via **ch
 - [ ] accessibility improvement (by installing "tota11y")
 - [ ] convert class components to functional components
 - [ ] increase test coverage
+- [ ] add a search box to search for event topics
 
 
 ## Implemented Technical Requirements, Features and Scenarios
 
 ### Technical Requirements
-* works on the latest versions of Chrome, Firefox, Safari, Edge, and Opera, as well as on IE11.
+* works on the latest versions of Chrome, Firefox, Safari, Edge, and Opera as well as on IE11, although it had end of life recently.
 * displays well on all screen sizes (including mobile and tablet) widths of 1920px and 320px.
 * users may be able to install the app on homescreen and add the app to their home screen on mobile.
 * works offline or in slow network conditions with the help of a service
   worker.
 
 
-### Features and Scenarios used for TDD approach
-- [x] **I. User can filter events by city**
-  - Scenario 1: When user hasn't searched for a city, show upcoming events from all cities.
-  - Scenario 2: User should see a list of suggestions when they search for a city.
-  - Scenario 3: User can select a city from the suggested list.
-- [x] **II. User should see more/less details on an event**
-  - Scenario 1: An event element is collapsed by default
-  - Scenario 2: User can expand an event to see its details
-  - Scenario 3: User can collapse an event to hide its details
-- [x] **III. User should be able to specify number of events per city**
-    - Scenario 1: When user has not specified a number, 32 is the default number
-    - Scenario 2: User can change the number of events they want to see
-- [x] **IV. User should be able to use the app when offline**
-    - Scenario 1: Show cached data when there's no internet connection
-    - Scenario 2: Show offline alert when user interacts with the app while offline
-- [x] **V. User should be able to see visualized data on the events**
-    - Scenario 1: Show a scatter chart with the number of upcoming events in each city
-    - Scenario 2: Show a pie chart with the topics of events in all cities
+### Features
+| Done | Feature|
+|------|--------|
+|✅| User can filter events by city|
+|✅| User should see more/less details on an event|
+|✅| User should be able to specify number of events per city|
+|✅| User should be able to use the app when offline|
+|✅| User should be able to see visualized data on the events|
 
 
-## Details from Project Implementation (User stories, Gherkin Scenarios)
+### Details from Project Implementation using a TDD approach (user stories, Gherkin scenarios)
 
 <details>
   <summary>Click to expand!</summary>
@@ -141,8 +135,80 @@ Please be aware, that this is a performance report conducted on the deployed Git
 <br>
 <img src="https://user-images.githubusercontent.com/99111208/174773580-398e07b3-68b5-419c-bc42-c5bd32129e05.png" alt="Dev Dependencies">
 
+
 ## What did I learn?
 
-[currently working on it...]
+### ... in general
+- The website codedec is very helpful in general because you can search in GitHub repositories and find examples of code that might fit your own use case and setup. This page helped me find out, [how to get the value of an input field in puppeteer](https://codedec.com/tutorials/how-to-get-element-value-in-puppeteer/)
 
+### ... from working with React
+- The issue with React being a library is that it is not a full-fledged framework like Angular. Ever since using the latest React version, 18, I ran into dependency issues very often.
 
+### ... from doing monitoring with Atatus and Lighthouse
+
+I compared the metrics from Atatus to the results from the Chrome browser monitoring tool Lighthouse. As a performance monitoring tool built directly into the browser, Lighthouse is much faster than Atatus, which is only loaded after all JavaScript files have been loaded. To improve that, Atatus should be placed in a separate file, that is loaded before the index.js. For the report I conducted, the metrics calculated by Lighthouse have a higher reliability. It would be interesting to see the results from NewRelic when deployed to Heroku, since it is a popular monitoring tool.
+
+### ... from deployment to first GitHub, then Heroku
+- **Challenge:** GitHub stopped deploying my most recent files, so that I could not work on the Welcome Screen and the offline mode. So I opened a ticket to GitHub, described the problem, send a SHA and would have waited two days.... hadn't I been so impatient to continue with the project.
+So I deployed my app to heroku instead. I revisited all the nice authentication and verification steps I had loved so much the first time I did it.
+and then heroku brought about problems of its own.... I was getting errors about an enzyme library I was using. Then the service worker did not register (and I got no offline-mode), because heroku was always working in development mode and not doing a build when I deployed.
+
+- **Solution:** I got around that by installing a heroku buildpack for create-React-app.
+
+- **Side note for future projects:** Unfortunately I just learned that the underlying static web server buildpack is deprecated and will not be supported on Heroku-22 or newer stacks. So the buildpack will soon stop working and it is suggested to look into using Next.js or Remix to develop React apps which are deployable using the Node.js buildpack. (https://github.com/mars/create-react-app-buildpack)
+
+### ... from Testing
+- **End-to-end testing:** 
+  - **Challenge:** After refactoring the code of the feature ‘show/hide an event detail’ to include beforeAll() and afterAll() I got the error: "You are trying to import a file after the Jest environment has been torn down."
+  - **Solution**: Only reverting the code to not use beforeAll() and afterAll() solved this error. I tried out all approaches from stackoverflow to solve this error (including adding a jest.config.js file, alternatively adding configurations for jest in the package.json), but the error remained. So in case I run into the same error in the future, I will know that this not so perfect solution at least works.
+- **Unit-testing:**
+  - **Challenge:** Using Enzyme with react 18 caused problems measured by tons of console.errors, because enzyme uses the pre-18 react API.
+  - **Solution:** The documentation suggests to use react-testing-library instead.
+  
+### ... from authentication and verification
+- **OAuth2 on Google Cloud Platform**: Proof of ownership is no longer required for push subscription URL domains. You do not need to upload it to glenzy.github.io 3 to verify. You simply download the html file and paste it into the public folder.
+- **Domain verification on Google Cloud Platform:**
+  - You do not need to upload it to glenzy.github.io 3 to verify anymore. You simply download the html file and paste it into the public folder.
+  - Further information: https://support.google.com/cloud/answer/9110914#exceptions-ver-reqts&zippy=%2Cexceptions-to-verification-requirements 
+  - I also changed the credentials in the handler.js:
+  redirect_uris: ["meet-up-app-2022.herokuapp.com/"],
+  javascript_origins: ["meet-up-app-2022.herokuapp.com", "localhost:3000"],
+
+### ... from making the App a PWA (configure serviceWorker and manifest.json)
+- **Challenge:** As described in the create-react-app documentation https://create-react-app.dev/docs/making-a-progressive-web-app/ I tried to opt-in to the offline-first behavior I changed serviceWorker.unregister() to 
+```
+serviceWorker.register()
+```
+in the src/index.js file. That did not work.
+
+- **Solution:** Instead - as already suggested in the Create React App template - I then erased the import of serviceWorker as well as serviceWorker.register(), because (as Lighthouse told me), there is no register function in service-worker.js.
+
+  So what works is:
+  ```
+  import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+  ...
+  serviceWorkerRegistration.register();
+  ```
+
+- Also, I added the following to the manifest.json, to make it a PWA:
+  ```
+  “prefer_related_applications”: false
+  ```
+  
+### ... from creating charts
+
+- **Challenge:** I originally wanted to use recharts.js to create a scatter chart and a pie chart, but that did not work, because of me using react 18. See the following error: 
+```
+ERESOLVE unable to resolve dependency tree
+npm ERR!
+npm ERR! While resolving: meet@0.1.0
+npm ERR! Found: react@18.1.0
+npm ERR! node_modules/react
+npm ERR! react@"^18.1.0" from the root project
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! peer react@"^16.0.0 || ^17.0.0" from recharts@2.1.10
+npm ERR! node_modules/recharts
+```
+- The reason: recharts - currently - only works with react 16 or 17. I could have added **--legacy-peer-deps** to the end of the install command ... but that would just have been a temporary fix and probably have led to other problems along the way.
+- **Solution:** So I did some research on popular chart libraries for react on npm trends and openbase (https://openbase.com/categories/js/best-react-chart-libraries) and decided to use react chart.js instead, because chart.js can be used with several frameworks and I will be able to apply my learnings to future projects as well.
