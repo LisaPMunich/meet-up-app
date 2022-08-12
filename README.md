@@ -120,7 +120,7 @@ Please be aware, that this is a performance report conducted on the deployed Git
 
 <img alt="Report Atatus and Lighthouse" src="https://user-images.githubusercontent.com/99111208/173822836-dddedfcc-b0f1-411d-a98b-98e7ac1819aa.png" width="550">
 
-## Testing (Jest, Enzyme, React testing library), status 2022-05-25
+## Testing (Jest, Enzyme, React testing library), status: 2022-05-25
 
 <img alt="Screenshot_4 3_unittest_jest_coverage" src="https://user-images.githubusercontent.com/99111208/173823673-32cd4c90-535b-44aa-89e7-72806755d053.png" width="550">
 
@@ -146,6 +146,33 @@ Please be aware, that this is a performance report conducted on the deployed Git
 <img src="https://user-images.githubusercontent.com/99111208/174773580-398e07b3-68b5-419c-bc42-c5bd32129e05.png" alt="Dev Dependencies">
 
 </details>
+
+
+### How to run project locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/LisaPMunich/meet-up-app
+```
+
+Go to the project directory
+
+```bash
+  cd meet-up-app
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
 
 ## What did I learn?
 
