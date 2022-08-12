@@ -32,7 +32,7 @@ The app also includes a **visualization of events** by city in a graph (via **ch
 </td>
 </tr>
 </table>
-[currently being verified by Google]
+
 
 ## Issues I would like to improve given time
 
